@@ -1,12 +1,15 @@
 package com.example.TopIt.security;
 
+import com.example.TopIt.models.CustonUserDetails;
 import com.example.TopIt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
@@ -26,25 +29,30 @@ public class WebSecurityConfig{
     private UserDetailsService userDetailsService;
 
     @Bean
-    AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider provider
+   public DaoAuthenticationProvider daoAuthenticationProvider(){
+        final DaoAuthenticationProvider provider
                 = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
         return provider;
     }
-
-
     @Bean
         public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-            return http
+            http
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> {
-                    auth.antMatchers("/").permitAll();
-                    auth.antMatchers("/user").hasRole("USER");
-                    auth.antMatchers("/admin").hasRole("ADMIN");
+                    auth.antMatchers("/**").permitAll();
+                    auth.antMatchers("/user/**").hasRole("USER");
+                    auth.antMatchers("/admin/**").hasRole("ADMIN");
                 })
-                .httpBasic(Customizer.withDefaults())
-                .build();
+                .httpBasic(Customizer.withDefaults());
+
+
+                return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+        return authenticationConfiguration.getAuthenticationManager();
     }
 }

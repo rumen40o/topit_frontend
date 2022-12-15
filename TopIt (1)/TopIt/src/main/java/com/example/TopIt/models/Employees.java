@@ -26,6 +26,7 @@ public class Employees {
     private String phone;
 
     private String imageURl;
+
 @Column(nullable = false,updatable = false)
     private String employeeCode;
 }
