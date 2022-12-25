@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Random;
+
 @Entity
 @Getter
 @Setter
@@ -25,8 +27,24 @@ public class Employees {
 
     private String phone;
 
+    private Random password;
+
     private String imageURl;
 
 @Column(nullable = false,updatable = false)
     private String employeeCode;
+
+
+    @ManyToOne
+    @JoinColumn(name = "tasks_id")
+    private Tasks tasks;
+
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Events event;
+
+    @ManyToOne
+    @JoinColumn(name = "teams_id")
+    private Teams teams;
 }

@@ -2,6 +2,7 @@ package com.example.TopIt.controllers;
 
 
 import com.example.TopIt.models.Employees;
+import com.example.TopIt.models.UserModel;
 import com.example.TopIt.services.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,44 +18,41 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
-    @RequestMapping("/admin")
-    public void adminFunctions(Long id, Employees employees){
-        getEmployeesById(id);
-        getAllEmployees();
-        addEmployee(employees);
-        updateEmployee(employees);
-        deleteEmployee(id);
+    
+    @GetMapping("/admin/all")
+    public ResponseEntity<List<Employees>> getAllEmployeesAdmin(){
+        List<Employees> employees = employeeService.findAllEployees();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
-    @RequestMapping("/user")
-    public void userFunctions(Long id){
-        getAllEmployees();
-        getEmployeesById(id);
-    }
-    @GetMapping("/all")
-    public ResponseEntity<List<Employees>> getAllEmployees(){
+    @GetMapping("/user/all")
+    public ResponseEntity<List<Employees>> getAllEmployeesUser(){
         List<Employees> employees = employeeService.findAllEployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Employees> getEmployeesById(@PathVariable("id") Long id){
+    @GetMapping("/admin/find/{id}")
+    public ResponseEntity<Employees> getEmployeesByIdAdmin(@PathVariable("id") Long id){
         Employees employees = employeeService.findEmployeeById(id);
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @GetMapping("/user/find/{id}")
+    public ResponseEntity<Employees> getEmployeesByIdUser(@PathVariable("id") Long id){
+        Employees employees = employeeService.findEmployeeById(id);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+    @PostMapping("/admin/add")
     public ResponseEntity<Employees> addEmployee(@RequestBody Employees employees) {
         Employees newEmployee = employeeService.addEmployee(employees);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<Employees> updateEmployee(@RequestBody Employees employee) {
         Employees updateEmployee = employeeService.updateEmployee(employee);
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);

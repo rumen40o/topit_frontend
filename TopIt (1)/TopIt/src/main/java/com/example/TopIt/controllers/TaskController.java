@@ -20,43 +20,41 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @RequestMapping("/admin")
-    public void adminFunctions(Long id, Tasks tasks){
-        getTaskById(id);
-        getAllTasks();
-        addTask(tasks);
-        updateTask(tasks);
-        deleteTask(id);
+    @GetMapping("/admin/all")
+    public ResponseEntity<List<Tasks>> getAllTasksAdmin(){
+        List<Tasks> tasks = taskService.findAllTasks();
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
-    @RequestMapping("/user")
-    public void userFunctions(Long id){
-        getAllTasks();
-        getTaskById(id);
-    }
-    @GetMapping("/all")
-    public ResponseEntity<List<Tasks>> getAllTasks(){
+    @GetMapping("/user/all")
+    public ResponseEntity<List<Tasks>> getAllTasksUser(){
         List<Tasks> tasks = taskService.findAllTasks();
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Tasks> getTaskById(@PathVariable("id") Long id){
+    @GetMapping("/admin/find/{id}")
+    public ResponseEntity<Tasks> getTaskByIdAdmin(@PathVariable("id") Long id){
         Tasks tasks= taskService.findTaskById(id);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @GetMapping("/user/find/{id}")
+    public ResponseEntity<Tasks> getTaskByIdUser(@PathVariable("id") Long id){
+        Tasks tasks= taskService.findTaskById(id);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
+
+    @PostMapping("/admin/add")
     public ResponseEntity<Tasks> addTask(@RequestBody Tasks tasks) {
         Tasks newTask = taskService.addTask(tasks);
         return new ResponseEntity<>(newTask, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<Tasks> updateTask(@RequestBody Tasks tasks) {
         Tasks updateTask = taskService.updateTask(tasks);
         return new ResponseEntity<>(updateTask, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<?> deleteTask(@PathVariable("id") Long id) {
         taskService.deleteTask(id);
         return new ResponseEntity<>(HttpStatus.OK);
