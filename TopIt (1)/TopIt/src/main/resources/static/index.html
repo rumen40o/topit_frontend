@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Login</title>
+</head>
+<body>
+<div id="midDiv">
+    <h1>TopIT</h1>
+    <div id="loginDiv">
+        <h2>Log In</h2>
+        <div>
+            <label for="emailInput">Username</label>
+            <input type="text" id="emailInput" autofocus>
+        </div>
+        <div>
+            <label for="passwordInput">Password</label>
+            <input type="password" id="passwordInput">
+        </div>
+        <button id="loginButton" tabindex="-1" onclick="Login()">Log In</button>
+    </div>
+    <a href="/register">I don't have an account</a>
+</div>
+</body>
+</html>

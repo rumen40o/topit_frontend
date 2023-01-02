@@ -17,18 +17,21 @@ public class UserModel {
 
     private Long id;
 
+    private String username;
+
     private String email;
 
     private String password;
 
     private String role;
 
+
     @Override
     public String toString() {
         return "UserModel{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
