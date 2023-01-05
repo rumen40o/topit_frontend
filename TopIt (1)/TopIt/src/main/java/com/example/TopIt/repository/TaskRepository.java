@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface TaskRepository extends JpaRepository<Tasks,Long> {
 
 
-    void deleteTaskById(Long id);
+
 
     Optional<Tasks> findTaskById(Long id);
 }

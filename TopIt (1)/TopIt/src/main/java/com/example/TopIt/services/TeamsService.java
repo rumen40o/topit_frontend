@@ -38,6 +38,6 @@ public class TeamsService {
     }
 
     public void deleteTeam(Long id){
-        repository.deleteTeamById(id);
+        repository.deleteById(id);
     }
 }

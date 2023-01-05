@@ -27,8 +27,6 @@ public class Employees {
 
     private String phone;
 
-    private Random password;
-
     private String imageURl;
 
 @Column(nullable = false,updatable = false)

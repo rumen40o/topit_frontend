@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface EventRepository extends JpaRepository<Events,Long> {
 
-    void deleteEventById(Long id);
+
 
     Optional<Events> findEventById(Long id);
 }

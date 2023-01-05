@@ -38,6 +38,6 @@ public class EventService {
     }
 
     public void deleteEvent(Long id){
-        repository.deleteEventById(id);
+        repository.deleteById(id);
     }
 }
