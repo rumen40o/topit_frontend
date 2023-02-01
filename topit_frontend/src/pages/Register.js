@@ -1,11 +1,10 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import axios from "axios";
 import { useState } from "react";
+import "./css/register.css";
 
 
 const Account = () => {
-
-    let navigate= useNavigate()
 
     const [data,setData]= useState([{
         firstname : "",
@@ -18,52 +17,56 @@ const Account = () => {
 
     console.log(data)
 
+    const [unPassword, setUnPassword] = useState("")
+
     const handleClick = () => {
-           axios.post('http://localhost:8080/auth/register',{
+            data.password === unPassword ?
+            axios.post('http://localhost:8080/auth/register',{
             firstname:data.firstname,
             lastname:data.lastname,
             email:data.email,
             password:data.password
-           }).then(() => console.log('rumen'))
+           }).then(() => console.log('registration successfull'))
+           :
+           console.log("paroalta e ta6ak")
     }
 
     const handleChange = (event) => {
         const {id , value} = event.target
 
-        setData(prevData => ({
-            ...prevData, [id] : value
-        }))
+        if(id === 'confirmPassword') {
+            if(value === unPassword) {
+                setData(prevData => ({
+                    ...prevData, password : value
+                }))
+            } else {
+                console.log("passwords don't match")
+            }
+        }else if(id === "password"){ 
+            setUnPassword(value)
+        }else {
+            setData(prevData => ({
+                ...prevData, [id] : value
+            }))
+        }
     }
 
 
     return (
-        <div id="midDiv">
-        <h1>TopIT</h1>
-        <div id="signupDiv">
-            <h2>Sign up</h2>
-            <div>
-                <label for="firstNameInput">First Name: </label>
-                <input type="text" id="firstname" onChange={handleChange} autofocus/>
+        <div id="container-signup">
+            <h1>TopIT</h1>
+            <div id="signup-div">
+                <div id="input-div">
+                    <input type="text" id="firstname" placeholder="First name" onChange={handleChange} autofocus/>
+                    <input type="text" id="lastname" placeholder="Last name" onChange={handleChange}/>
+                    <input type="email" id="email" placeholder="E-mail" onChange={handleChange}/>
+                    <input type="password" id="password" placeholder="Password" onChange={handleChange}/>
+                    <input type="password" id="confirmPassword" placeholder="Confirm password" onChange={handleChange}/>
+                </div>
+                <button id="login-button" tabindex="-1" onClick={handleClick}>Sign Up</button>
             </div>
-            <div>
-                <label for="lastNameInput">Last Name: </label>
-                <input type="text" id="lastname" onChange={handleChange}/>
-            </div>
-            <div>
-                <label for="emailInput">E-Mail: </label>
-                <input type="email" id="email" onChange={handleChange}/>
-            </div>
-            <div>
-                <label for="passwordInput">Password: </label>
-                <input type="password" id="password" onChange={handleChange}/>
-            </div>
-            <button id="loginButton" tabindex="-1" onClick={handleClick}>Sign Up</button>
+            <Link to="/login"><a href="/login/login.html">I already have an account</a></Link>
         </div>
-       <Link to="/login"><a href="/login/login.html">I already have an account</a></Link>
-    </div>
-
-
-
    );
   };
   
