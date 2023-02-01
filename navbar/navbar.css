@@ -7,6 +7,12 @@ html, body {
     margin: 0;
     background-color: #EFF1F3;
 }
+body {
+    background-image: url('/kitten.png');
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    background-size: 50%;
+}
 #container {
     width: 150px;
     height: 100%;

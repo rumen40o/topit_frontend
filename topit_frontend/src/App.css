@@ -1,0 +1,16 @@
+.routes{
+    width: 90.1%;
+    height: 150%;
+    margin: auto;
+    margin-left: 150px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    float: right;
+    
+}
+.navbar{
+    float: left;
+    height: 100%;
+}
