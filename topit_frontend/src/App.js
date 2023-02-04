@@ -1,14 +1,17 @@
 import {Route, Routes} from 'react-router-dom';
 import Home from "./pages/Home";
 import Events from "./pages/Events";
-import Employees from "./pages/Employees";
+import AddEmployee from "./pages/AddEmployee";
+import Employees from './pages/Employees';
 import Tasks from "./pages/Tasks";
 import Account from "./pages/Account";
 import './App.css';
 import NavBar from './navbar/NavBar';
 import Login from './pages/Login'; 
 import Register from './pages/Register'; 
+import UpdateEmployee from './pages/UpdateEmployee';
 import { useState } from 'react';
+import deleteEmployee from "./pages/deleteEmployee";
 
 
 
@@ -29,6 +32,10 @@ function App() {
          <Route path='/account' element={<Account/>}/>
          <Route path='/login' element={<Login setUser = {setUser}/>}/>
          <Route path='/register' element={<Register/>}/>
+         <Route path='/addEmployee' element={<AddEmployee/>}/>
+         <Route path='/updateEmployee' element={<UpdateEmployee/>}/>
+         <Route path='/deleteEmployee' element={<deleteEmployee/>}/>
+
       </Routes>
     </div>
     <div className='navbar'>
