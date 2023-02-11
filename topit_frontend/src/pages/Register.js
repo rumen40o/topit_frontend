@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import axios from "axios";
 import { useState } from "react";
 import "./css/register.css";
+import topit_logo from 'C:/Users/User/Desktop/diplomna/topit_frontend/topit_frontend/src/topit_logo.svg';
 
 
 const Account = () => {
@@ -54,18 +55,18 @@ const Account = () => {
 
     return (
         <div id="container-signup">
-            <h1>TopIT</h1>
+            <img className='login--logo' src={topit_logo} alt='logo'></img>
             <div id="signup-div">
-                <div id="input-div">
-                    <input type="text" id="firstname" placeholder="First name" onChange={handleChange} autofocus/>
-                    <input type="text" id="lastname" placeholder="Last name" onChange={handleChange}/>
-                    <input type="email" id="email" placeholder="E-mail" onChange={handleChange}/>
-                    <input type="password" id="password" placeholder="Password" onChange={handleChange}/>
-                    <input type="password" id="confirmPassword" placeholder="Confirm password" onChange={handleChange}/>
-                </div>
-                <button id="login-button" tabindex="-1" onClick={handleClick}>Sign Up</button>
+                {/* <div id="input-div"> */}
+                    <input className="login-input" type="text" id="firstname" placeholder="First name" onChange={handleChange} autofocus/>
+                    <input className="login-input" type="text" id="lastname" placeholder="Last name" onChange={handleChange}/>
+                    <input className="login-input" type="email" id="email" placeholder="E-mail" onChange={handleChange}/>
+                    <input className="login-input" type="password" id="password" placeholder="Password" onChange={handleChange}/>
+                    <input className="login-input" type="password" id="confirmPassword" placeholder="Confirm password" onChange={handleChange}/>
+                {/* </div> */}
+                <button id="login-button" onClick={handleClick}>Sign Up</button>
             </div>
-            <Link to="/login"><a href="/login/login.html">I already have an account</a></Link>
+            <a className="login-switch"><Link to="/login"><a className="login-switch">I already have an account</a></Link></a>
         </div>
    );
   };

@@ -2,6 +2,7 @@ import './css/login.css';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
+import topit_logo from 'C:/Users/User/Desktop/diplomna/topit_frontend/topit_frontend/src/topit_logo.svg';
 
 
 const Login = (props) => {
@@ -21,38 +22,27 @@ const Login = (props) => {
         
     }
     const handleClick = () =>{
-        console.log("pishki")
-        let params;
-        try {
-            params = new URLSearchParams([['email', loginInfo.email],['password', loginInfo.password]])
-        } catch {
         
-        }
-        axios.post("http://localhost:8080/auth/login", {params})
+        axios.post("http://localhost:8080/auth/login", {
+        	email:loginInfo.email,
+            password:loginInfo.password
+        })
         .then((response) => props.setUser(response))
     
     }
 
-   
-    
-
     return (
-        <div id="midDiv">
-        <h1>TopIT</h1>
-        <div id="loginDiv">
-            <h2>Log In</h2>
-            <div>
-                <label for="emailInput">E-Mail</label>
-                <input type="email" id="email" onChange={handleChange} value = {loginInfo.email} autofocus/>
+        <div id="container-login">
+            <img className='login--logo' src={topit_logo} alt='logo'></img>
+            <div id="login-div">
+                {/* <div id="input-div"> */}
+                    <input className="login-input" type="email" id="email" placeholder="E-mail" onChange={handleChange}/>
+                    <input className="login-input" type="password" id="password" placeholder="Password" onChange={handleChange}/>
+                {/* </div> */}
+                <button id="login-button" onClick={handleClick}>Log In</button>
             </div>
-            <div>
-                <label for="passwordInput">Password</label>
-                <input type="password" id="password" onChange = {handleChange} value = {loginInfo.password}/>
-            </div>
-            <button id="loginButton" tabindex="-1" onClick={handleClick}>Log In</button>
+            <a className="login-switch"><Link to="/register"><a className="login-switch">I don't have an account</a></Link></a>
         </div>
-        <Link to="/register"><a href="/register/register.html">I don't have an account</a></Link>
-    </div>
     );
   };
   

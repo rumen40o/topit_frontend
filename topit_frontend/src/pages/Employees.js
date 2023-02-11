@@ -1,59 +1,32 @@
-
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import Employee from "../components/Employee";
 
 const Employees = () => {
+  const [data, setData] = useState([]);
+  const [search, setSerch] = useState("");
 
-  const [data, setData] = useState([])
+  const employee_search = data.filter((data) => {
+    if (search === "") {
+      return data;
+    } else if (
+      data.email.toLowerCase().includes(search.toLowerCase()) ||
+      data.name.toLowerCase().includes(search.toLowerCase()) ||
+      data.jobTitle.toLowerCase().includes(search.toLowerCase()) ||
+      data.phone.toLowerCase().includes(search.toLowerCase())
+    ) {
+      return data;
+    }
+  });
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/admin/all')
-    .then(res =>{
-      console.log("Getting from ::::::", res.data)
-      setData(res.data)
-    }).catch(err => console.log(err))
-  },[])
+  return (
+    <div>
+      <Link to="/addEmployee">
+        <button id="addEmployeeButton">AddEmployee</button>
+      </Link>
+      <Employee />
+    </div>
+  );
+};
 
-    const arr = data.map((data, index) =>{
-      return (
-        <tr>
-            <th>{data.id}</th>
-            <th>{data.name}</th>
-            <th>{data.email}</th>
-            <th>{data.jobTitle}</th>
-            <th>{data.phone}</th>
-            <th>{data.imageURL}</th>
-          </tr>
-      )
-    })
-
-
-
-
-
-    return (
-      <div>
-        <Link to="/addEmployee"><button id='addEmployeeButton'>AddEmployee</button></Link>
-        <Link to="/updateEmployee"><button id='updateEmployeeButton'>Edit</button></Link>
-        <Link to="/deleteEmployee"><button id='deleteEmployeeButton'>Delete</button></Link>
-        <table>
-          <tr>
-            <th>ID</th>
-            <th>name</th>
-            <th>email</th>
-            <th>JobTitle</th>
-            <th>phone</th>
-            <th>imageURL</th>
-          </tr>
-          {arr}
-        </table>
-
-
-
-     </div>
-    );
-  };
-  
-  export default Employees;
+export default Employees;

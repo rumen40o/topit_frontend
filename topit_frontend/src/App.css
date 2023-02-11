@@ -1,6 +1,10 @@
+#root {
+    height: 100%;
+    width: 100%;
+}
 .routes{
-    width: 90.1%;
-    height: 150%;
+    width: calc(100% - 150px);
+    height: 100%;
     margin: auto;
     margin-left: 150px;
     display: flex;

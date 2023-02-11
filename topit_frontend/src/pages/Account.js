@@ -7,9 +7,6 @@
      <div>
         <Link to="/login"><button id='loginButton' >Login</button></Link>
      </div>
-
-
-
    );
   };
   
