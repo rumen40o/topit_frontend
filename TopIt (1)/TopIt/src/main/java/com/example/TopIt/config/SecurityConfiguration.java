@@ -1,4 +1,4 @@
-package com.example.TopIt.config;
+/*package com.example.TopIt.config;
 
 
 import jakarta.servlet.Filter;
@@ -40,4 +40,4 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-}
+}*/

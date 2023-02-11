@@ -1,4 +1,4 @@
-package com.example.TopIt.services;
+/*package com.example.TopIt.services;
 
 import com.example.TopIt.controllers.AuthenticationRequest;
 import com.example.TopIt.models.AuthenticationResponse;
@@ -51,4 +51,4 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
-}
+}*/
