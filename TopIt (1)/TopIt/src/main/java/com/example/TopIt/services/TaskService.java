@@ -23,6 +23,9 @@ public class TaskService {
         task.setTaskCode(UUID.randomUUID().toString());
         return repository.save(task);
     }
+    public Tasks addFileTask(Tasks tasks){
+        return repository.save(tasks);
+    }
 
     public List<Tasks> findAllTasks(){
         return repository.findAll();

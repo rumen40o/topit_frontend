@@ -2,7 +2,6 @@ package com.example.TopIt.controllers;
 
 
 import com.example.TopIt.models.Employees;
-import com.example.TopIt.models.UserModel;
 import com.example.TopIt.services.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -46,9 +46,9 @@ public class EmployeeController {
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
-    @PutMapping("/admin/update")
-    public ResponseEntity<Employees> updateEmployee(@RequestBody Employees employee) {
-        Employees updateEmployee = employeeService.updateEmployee(employee);
+    @PutMapping("/admin/update/{id}")
+    public ResponseEntity<Employees> updateEmployee(@RequestBody Employees employee, @PathVariable Long id) {
+        Employees updateEmployee = employeeService.updateEmployee(employee,id);
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
 

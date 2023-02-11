@@ -20,6 +20,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+
     @GetMapping("/admin/all")
     public ResponseEntity<List<Tasks>> getAllTasksAdmin(){
         List<Tasks> tasks = taskService.findAllTasks();
@@ -45,6 +46,11 @@ public class TaskController {
     @PostMapping("/admin/add")
     public ResponseEntity<Tasks> addTask(@RequestBody Tasks tasks) {
         Tasks newTask = taskService.addTask(tasks);
+        return new ResponseEntity<>(newTask, HttpStatus.CREATED);
+    }
+    @PostMapping("/user/add")
+    public ResponseEntity<Tasks> addFileTask(@RequestBody Tasks tasks) {
+        Tasks newTask = taskService.addFileTask(tasks);
         return new ResponseEntity<>(newTask, HttpStatus.CREATED);
     }
 

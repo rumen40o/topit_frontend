@@ -27,8 +27,18 @@ public class EmployeeService {
         return repository.findAll();
     }
 
-    public Employees updateEmployee(Employees employees){
-        return repository.save(employees);
+    public Employees updateEmployee(Employees employees ,Long id){
+        return repository.findEmployeeById(id)
+                .map(user -> {
+                    user.setName(employees.getName());
+                    user.setEmail(employees.getEmail());
+                    user.setJobTitle(employees.getJobTitle());
+                    user.setPhone(employees.getPhone());
+                    user.setImageURl(employees.getImageURl());
+                    return repository.save(user);
+                })
+                .orElseThrow(() -> new UserNotFoundExeption("User by id "+ id+" was not found"));
+
     }
 
     public Employees findEmployeeById(Long id){
