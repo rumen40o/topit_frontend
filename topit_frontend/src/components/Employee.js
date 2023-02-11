@@ -11,6 +11,7 @@ const Employee = () => {
   };
 
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
@@ -29,38 +30,56 @@ const Employee = () => {
   };
   return (
     <div>
-      {data.map((data, index) => (
-        <div className="employee">
-          <img className="employee--image">{data.imageUrl}</img>
-          <div className="employee--fl-div">
-            <h3 className="employee--name">{data.name}</h3>
-            <button
-              className="employee--options-button"
-              onClick={employeeOptionsClick}
-            >
-              •••
-              <ul className="employee--options active">
-                <li>
-                  <Link to={`/updateEmployee/${data.id}`}>
-                    <button className="employee--edit-button">Edit</button>
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    className="employee--delete-button"
-                    onClick={(e) => deleteEmployee(data.id, e)}
-                  >
-                    Delete
-                  </button>
-                </li>
-              </ul>
-            </button>
+      <input
+        className="search--input"
+        placeholder="search.."
+        onChange={(e) => setSearch(e.target.value)}
+      ></input>
+      {data
+        .filter((data) => {
+          if (search === "") {
+            return data;
+          } else if (
+            data.email.toLowerCase().includes(search.toLowerCase()) ||
+            data.name.toLowerCase().includes(search.toLowerCase()) ||
+            data.jobTitle.toLowerCase().includes(search.toLowerCase()) ||
+            data.phone.toLowerCase().includes(search.toLowerCase())
+          ) {
+            return data;
+          }
+        })
+        .map((data, index) => (
+          <div className="employee">
+            <img className="employee--image">{data.imageUrl}</img>
+            <div className="employee--fl-div">
+              <h3 className="employee--name">{data.name}</h3>
+              <button
+                className="employee--options-button"
+                onClick={employeeOptionsClick}
+              >
+                •••
+                <ul className="employee--options active">
+                  <li>
+                    <Link to={`/updateEmployee/${data.id}`}>
+                      <button className="employee--edit-button">Edit</button>
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      className="employee--delete-button"
+                      onClick={(e) => deleteEmployee(data.id, e)}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                </ul>
+              </button>
+            </div>
+            <p className="employee--job">{data.jobTitle}</p>
+            <p className="employee--email">{data.email}</p>
+            <p className="employee--phone">{data.phone}</p>
           </div>
-          <p className="employee--job">{data.jobTitle}</p>
-          <p className="employee--email">{data.email}</p>
-          <p className="employee--phone">{data.phone}</p>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
