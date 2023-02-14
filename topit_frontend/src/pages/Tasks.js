@@ -1,5 +1,16 @@
+import { Link } from "react-router-dom";
+import Task from "../components/Task";
+
 const Tasks = () => {
-    return <h1>Tasks</h1>;
-  };
-  
-  export default Tasks;
+  return (
+    <div>
+      <Link to="/addTask">
+        <button id="addTaskButton">AddTask</button>
+      </Link>
+
+      <Task />
+    </div>
+  );
+};
+
+export default Tasks;

@@ -10,6 +10,8 @@ import NavBar from "./navbar/NavBar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UpdateEmployee from "./pages/UpdateEmployee";
+import AddTask from "./pages/AddTask";
+import ViewTask from "./pages/ViewTask";
 import { useState } from "react";
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/addEmployee" element={<AddEmployee />} />
           <Route path="/updateEmployee/:id" element={<UpdateEmployee />} />
+          <Route path="/addTask" element={<AddTask />} />
+          <Route path="/viewTask/:id" element={<ViewTask />} />
         </Routes>
       </div>
       <div className="navbar">

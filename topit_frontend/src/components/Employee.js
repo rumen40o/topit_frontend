@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import "../pages/css/employee.css";
 
 const Employee = () => {
-  const employeeOptionsClick = () => {
-    let optionsMenu = document.getElementById("employee--options");
-    console.log(optionsMenu);
+  const toggleOptions = () => {
+    setOptionsIsDisabled((prevOptionsDisabled) => !prevOptionsDisabled);
   };
 
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
+  const [optionsIsDisabled, setOptionsIsDisabled] = useState(true);
 
   useEffect(() => {
     axios
@@ -26,7 +26,8 @@ const Employee = () => {
   const deleteEmployee = (id, e) => {
     axios
       .delete(`http://localhost:8080/employee/admin/delete/${id}`)
-      .then(() => console.log("function successfull"));
+      .then(() => console.log("function successfull"))
+      .then(window.location.reload());
   };
   return (
     <div>
@@ -50,19 +51,29 @@ const Employee = () => {
         })
         .map((data, index) => (
           <div className="employee">
-            <img className="employee--image">{data.imageUrl}</img>
+            <img
+              className="employee--image"
+              src={data.imageURL}
+              placeholder={picture}
+            ></img>
             <div className="employee--fl-div">
               <h3 className="employee--name">{data.name}</h3>
               <button
                 className="employee--options-button"
-                onClick={employeeOptionsClick}
+                onClick={toggleOptions}
               >
                 •••
-                <ul className="employee--options active">
+                <ul
+                  className={
+                    optionsIsDisabled
+                      ? "employee--options disabled"
+                      : "employee--options"
+                  }
+                >
                   <li>
-                    <Link to={`/updateEmployee/${data.id}`}>
-                      <button className="employee--edit-button">Edit</button>
-                    </Link>
+                    <button className="employee--edit-button">
+                      <Link to={`/updateEmployee/${data.id}`}>Edit</Link>
+                    </button>
                   </li>
                   <li>
                     <button

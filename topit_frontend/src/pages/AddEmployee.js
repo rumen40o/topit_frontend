@@ -66,7 +66,7 @@ const AddEmployees = () => {
             onChange={handleChange}
           />
           <input
-            type="url"
+            type="text"
             id="imageURL"
             placeholder="imageURL"
             onChange={handleChange}
