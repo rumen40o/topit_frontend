@@ -1,0 +1,47 @@
+.navbar--highlight {
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+  margin: 20px 0 20px 0;
+  font-size: 20px;
+  position: absolute;
+  background-color: #eff1f3;
+  transition: 0.3s;
+  z-index: -1;
+}
+.navbar--highlight.top {
+  height: 21px;
+  background-color: #119da4;
+  margin-top: -21px;
+  border-radius: 0 0 20px 0;
+  z-index: 1;
+}
+.navbar--highlight.mid {
+  height: 90px;
+  background-color: #eff1f3;
+  margin-top: -20px;
+}
+.navbar--highlight.bot {
+  height: 21px;
+  background-color: #119da4;
+  margin-top: 50px;
+  border-radius: 0 20px 0 0;
+}
+
+.navbar--highlight.on-0 {
+  /* transform: translate(0); */
+  top: 0;
+}
+.navbar--highlight.on-1 {
+  top: 90px;
+}
+.navbar--highlight.on-2 {
+  top: 180px;
+}
+.navbar--highlight.on-3 {
+  top: 270px;
+}
+.navbar--highlight.on-4 {
+  top: 623px;
+}

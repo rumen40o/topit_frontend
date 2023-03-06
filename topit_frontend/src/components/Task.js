@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../pages/css/tasks.css";
 
 const Tasks = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/task/admin/all")
+      .get("http://localhost:8081/task/admin/all")
       .then((res) => {
         console.log("Getting from ::::::", res.data);
         setData(res.data);
@@ -17,14 +18,14 @@ const Tasks = () => {
 
   const deleteTask = (id, e) => {
     axios
-      .delete(`http://localhost:8080/task/admin/delete/${id}`)
+      .delete(`http://localhost:8081/task/admin/delete/${id}`)
       .then(() => console.log("function successfull"))
       .then(window.location.reload());
   };
   return (
-    <table>
-      <tr>
-        <th>TaskName</th>
+    <table className="tasks--table">
+      <tr className="tasks--headers">
+        <th className="task--name">Task Name</th>
         <th>View</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -33,15 +34,22 @@ const Tasks = () => {
         <tr>
           <td>{data.nameTask}</td>
           <td>
-            <button>
-              <Link to={`/viewTask/${data.id}`}>View</Link>
+            <Link to={`/viewTask/${data.id}`}>
+              <p className="tasks--link">View</p>
+            </Link>
+          </td>
+          <td>
+            <Link to={`/updateTask/${data.id}`}>
+              <p className="tasks--link">Edit</p>
+            </Link>
+          </td>
+          <td>
+            <button
+              className="tasks--link"
+              onClick={(e) => deleteTask(data.id, e)}
+            >
+              Delete
             </button>
-          </td>
-          <td>
-            <button>Edit</button>
-          </td>
-          <td>
-            <button onClick={(e) => deleteTask(data.id, e)}>Delete</button>
           </td>
         </tr>
       ))}

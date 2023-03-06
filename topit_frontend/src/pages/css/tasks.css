@@ -1,0 +1,101 @@
+.tasks {
+  width: calc(100% - 150px);
+  margin-left: 150px;
+  background-color: #eff1f3;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  align-items: center;
+}
+.tasks--container {
+  width: 600px;
+  /* min-width: 700px; */
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background-color: #eff1f3;
+  border: 3px solid #119da4;
+  border-radius: 15px;
+}
+.tasks--table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #2d3142;
+  border-radius: 10px 10px 0 0;
+}
+.tasks--table > * {
+  height: 30px;
+}
+.tasks--headers {
+  /* border: 1px solid black; */
+  width: 10%;
+}
+.tasks td {
+  /* background-color: purple; */
+}
+.tasks .task--name {
+  width: 70%;
+}
+.tasks--headers {
+  /* border-radius: 10% 10% 0 0; */
+  /* border-start-end-radius: 20px; */
+  /* border: 10px solid black; */
+}
+.tasks--headers > * {
+  color: #eff1f3;
+  height: 35px;
+  font-weight: 500;
+  /* background-color: #2d3142; */
+}
+.tasks--table tr:nth-child(odd) {
+  background-color: #d4e7ea;
+}
+.tasks--table tr:nth-child(2n + 0) {
+  background-color: #eff1f3;
+}
+.tasks--table tr:first-child {
+  background-color: transparent;
+}
+.tasks--button {
+  height: 35px;
+  background-color: #119da4;
+  border: none;
+  outline: none;
+  color: #eff1f3;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px;
+  /* margin-top: 5px; */
+  width: 600px;
+  border-radius: 0 0 10px 10px;
+}
+
+.tasks-table--button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #2d3142;
+}
+
+.tasks--link {
+  color: #2d3142;
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.update-task {
+  height: 100vh;
+  width: calc(100% - 150px);
+  margin-left: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

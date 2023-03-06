@@ -1,97 +1,64 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import picture from "../kitten.png";
-import { Link } from "react-router-dom";
 import "../pages/css/employee.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Employee = () => {
+export default function Employee(props) {
   const toggleOptions = () => {
     setOptionsIsDisabled((prevOptionsDisabled) => !prevOptionsDisabled);
   };
-
+  const { name } = props;
+  const nameArray = name.split(" ");
   const [data, setData] = useState([]);
-  const [search, setSearch] = useState("");
   const [optionsIsDisabled, setOptionsIsDisabled] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/employee/admin/all")
-      .then((res) => {
-        console.log("Getting from ::::::", res.data);
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   const deleteEmployee = (id, e) => {
     axios
-      .delete(`http://localhost:8080/employee/admin/delete/${id}`)
+      .delete(`http://localhost:8081/employee/admin/delete/${id}`)
       .then(() => console.log("function successfull"))
       .then(window.location.reload());
   };
   return (
-    <div>
-      <input
-        className="search--input"
-        placeholder="search.."
-        onChange={(e) => setSearch(e.target.value)}
-      ></input>
-      {data
-        .filter((data) => {
-          if (search === "") {
-            return data;
-          } else if (
-            data.email.toLowerCase().includes(search.toLowerCase()) ||
-            data.name.toLowerCase().includes(search.toLowerCase()) ||
-            data.jobTitle.toLowerCase().includes(search.toLowerCase()) ||
-            data.phone.toLowerCase().includes(search.toLowerCase())
-          ) {
-            return data;
-          }
-        })
-        .map((data, index) => (
-          <div className="employee">
-            <img
-              className="employee--image"
-              src={data.imageURL}
-              placeholder={picture}
-            ></img>
-            <div className="employee--fl-div">
-              <h3 className="employee--name">{data.name}</h3>
-              <button
-                className="employee--options-button"
-                onClick={toggleOptions}
-              >
-                •••
-                <ul
-                  className={
-                    optionsIsDisabled
-                      ? "employee--options disabled"
-                      : "employee--options"
-                  }
-                >
-                  <li>
-                    <button className="employee--edit-button">
-                      <Link to={`/updateEmployee/${data.id}`}>Edit</Link>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      className="employee--delete-button"
-                      onClick={(e) => deleteEmployee(data.id, e)}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                </ul>
+    <div className="employee">
+      <img className="employee--image" src={props.imageURL}></img>
+      <div className="employee--fl-div">
+        <h3 className="employee--name">
+          {nameArray.length > 1
+            ? `${nameArray[0]} ${nameArray[nameArray.length - 1]}`
+            : `${nameArray[0]}`}
+        </h3>
+
+        <button className="employee--options-button" onClick={toggleOptions}>
+          •••
+          <ul
+            className={
+              optionsIsDisabled
+                ? "employee--options disabled"
+                : "employee--options"
+            }
+          >
+            <li>
+              <button className="employee--edit-button">
+                <Link to={`/updateEmployee/${props.id}`}>
+                  <p className="employee--edit-text">Edit</p>
+                </Link>
               </button>
-            </div>
-            <p className="employee--job">{data.jobTitle}</p>
-            <p className="employee--email">{data.email}</p>
-            <p className="employee--phone">{data.phone}</p>
-          </div>
-        ))}
+            </li>
+            <li>
+              <button
+                className="employee--delete-button"
+                onClick={(e) => deleteEmployee(props.id, e)}
+              >
+                Delete
+              </button>
+            </li>
+          </ul>
+        </button>
+      </div>
+      <div className="employee--data">
+        <p className="employee--job">{props.jobTitle}</p>
+        <p className="employee--email">{props.email}</p>
+        <p className="employee--phone">{props.phone}</p>
+      </div>
     </div>
   );
-};
-export default Employee;
+}

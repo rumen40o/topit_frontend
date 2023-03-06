@@ -1,14 +1,61 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Employee from "../components/Employee";
+import axios from "axios";
+import "./css/employees.css";
+import searchIMG from "C:/Users/User/Desktop/diplomna/topit_frontend/topit_frontend/src/icons8-search.svg";
+import AddEmployee from "../components/AddEmployee";
 
 const Employees = () => {
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/employee/admin/all")
+      .then((res) => {
+        console.log("Getting from ::::::", res.data);
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(data);
+
+  let allEmployees = data
+    .filter((employee) => {
+      if (search === "") {
+        return employee;
+      } else if (
+        employee.name.toLowerCase().includes(search.toLowerCase()) ||
+        employee.email.toLowerCase().includes(search.toLowerCase()) ||
+        employee.jobTitle.toLowerCase().includes(search.toLowerCase()) ||
+        employee.phone.toLowerCase().includes(search.toLowerCase())
+      ) {
+        return employee;
+      }
+    })
+    .map((employee) => (
+      <Employee
+        id={employee.id}
+        name={employee.name}
+        email={employee.email}
+        jobTitle={employee.jobTitle}
+        phone={employee.phone}
+        imageURL={employee.imageURL}
+      />
+    ));
+
   return (
-    <div>
-      <Link to="/addEmployee">
-        <button id="addEmployeeButton">AddEmployee</button>
-      </Link>
-      <Employee />
+    <div className="employees">
+      <input
+        className="employees--search"
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => setSearch(e.target.value)}
+      ></input>
+      <AddEmployee />
+      <div className="employees--grid">{allEmployees}</div>
     </div>
   );
 };

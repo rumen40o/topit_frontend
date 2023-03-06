@@ -1,0 +1,14 @@
+.add-task {
+  height: 100vh;
+  width: calc(100% - 150px);
+  margin-left: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-task > .login-div {
+  height: 300px;
+}
+.add-task a {
+  width: 100%;
+}

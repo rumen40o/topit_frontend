@@ -1,0 +1,16 @@
+.navbar--button {
+  width: 100%;
+  height: 50px;
+  background-color: #fff5;
+  border: none;
+  outline: none;
+  margin: 20px 0 20px 0;
+  font-size: 20px;
+  z-index: 1;
+  transition: 0.3s;
+  color: #eff1f3;
+}
+.navbar--button.selected {
+  background-color: transparent;
+  color: #2d3142;
+}

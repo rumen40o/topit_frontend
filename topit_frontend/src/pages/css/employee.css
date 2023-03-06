@@ -1,8 +1,13 @@
 .employee {
   background-color: #119da411;
+  height: 350px;
   padding: 5px;
   border: 4px solid #119da4;
   border-radius: 14px;
+  background-color: #eff1f3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .employee > * {
   margin: 0;
@@ -21,7 +26,13 @@
   align-items: center;
   justify-content: center;
 }
+.employee--data > * {
+  margin: 5px 0;
+}
 .employee--name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
   margin: 10px 0;
   text-decoration: underline;
 }
@@ -60,14 +71,24 @@
   border: none;
   outline: none;
 }
+.employee--edit-text {
+  margin: 0;
+  width: 100%;
+  color: #2d3142;
+}
 .employee--options li > *:hover {
   background-color: #119da444;
 }
 .employee--edit-button {
   border-radius: 8px 8px 0 0;
+  width: 100%;
 }
 .employee--delete-button {
   border-radius: 0 0 8px 8px;
+  width: 100%;
+  color: #2d3142;
+  pointer-events: all;
+  cursor: pointer;
 }
 .employee--options-button:hover {
   background-color: #119da444;

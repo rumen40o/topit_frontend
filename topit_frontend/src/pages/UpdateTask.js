@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import "./css/addTask.css";
-import "./css/login.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import "./css/tasks.css";
 
-const AddTask = () => {
+const UpdateTask = () => {
   const [data, setData] = useState([
     {
       nameTask: "",
@@ -13,7 +12,9 @@ const AddTask = () => {
       link: "",
     },
   ]);
+
   console.log(data);
+  const { id } = useParams();
 
   const handleChange = (event) => {
     console.log("works");
@@ -23,60 +24,66 @@ const AddTask = () => {
       [id]: value,
     }));
   };
-
-  const addTask = () => {
+  const updateTask = () => {
     axios
-      .post("http://localhost:8081/task/admin/add", {
+      .put(`http://localhost:8081/task/admin/update/${id}`, {
         nameTask: data.nameTask,
         description: data.description,
         endDate: data.endDate,
         link: data.link,
       })
-      .then(() => {
-        console.log("function successfull");
-      });
+      .then(() => console.log("function successfull"));
+  };
+  const loadTask = async () => {
+    const result = await axios.get(
+      `http://localhost:8081/task/admin/find/${id}`
+    );
+    console.log(result);
+    setData(result.data);
   };
 
+  useEffect(() => {
+    loadTask();
+  }, []);
   return (
-    <div className="add-task">
+    <div className="update-task">
       <div className="login-div">
         <input
-          className="login-input"
           type="text"
           id="nameTask"
-          placeholder="Task name"
+          placeholder="nameTask"
+          value={data.nameTask}
           onChange={handleChange}
           autofocus
         />
         <input
-          className="login-input"
           type="text"
           id="description"
           placeholder="description"
+          value={data.description}
           onChange={handleChange}
         />
         <input
-          className="login-input"
           type="date"
           id="endDate"
-          placeholder="endDate"
+          placeholder="EndDate"
+          value={data.endDate}
           onChange={handleChange}
         />
-
         <input
-          className="login-input"
           type="text"
           id="link"
           placeholder="link"
+          value={data.link}
           onChange={handleChange}
         />
         <Link to="/task">
-          <button id="login-button" tabindex="-1" onClick={addTask}>
-            Add Task
+          <button id="login-button" tabindex="-1" onClick={updateTask}>
+            Edit
           </button>
         </Link>
       </div>
     </div>
   );
 };
-export default AddTask;
+export default UpdateTask;

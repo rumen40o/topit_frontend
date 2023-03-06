@@ -1,16 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
-import "./css/addTask.css";
-import "./css/login.css";
-import { Link } from "react-router-dom";
+import "./css/addEvent.css";
 
-const AddTask = () => {
+const AddEvent = () => {
   const [data, setData] = useState([
     {
-      nameTask: "",
+      name: "",
       description: "",
-      endDate: "",
-      link: "",
+      startDateEvent: "",
+      endDateEvent: "",
     },
   ]);
   console.log(data);
@@ -24,59 +22,55 @@ const AddTask = () => {
     }));
   };
 
-  const addTask = () => {
+  const addEvent = () => {
     axios
-      .post("http://localhost:8081/task/admin/add", {
-        nameTask: data.nameTask,
+      .post("http://localhost:8081/event/admin/add", {
+        name: data.name,
         description: data.description,
-        endDate: data.endDate,
-        link: data.link,
+        startDateEvent: data.startDateEvent,
+        endDateEvent: data.endDateEvent,
       })
       .then(() => {
         console.log("function successfull");
       });
   };
-
   return (
-    <div className="add-task">
-      <div className="login-div">
+    <div>
+      <div className="add-task">
+        {/* <div id=""> */}
         <input
-          className="login-input"
           type="text"
-          id="nameTask"
-          placeholder="Task name"
+          id="name"
+          placeholder="name"
           onChange={handleChange}
           autofocus
         />
         <input
-          className="login-input"
           type="text"
           id="description"
           placeholder="description"
           onChange={handleChange}
         />
+        <label>startDate</label>
         <input
-          className="login-input"
           type="date"
-          id="endDate"
-          placeholder="endDate"
+          id="startDateEvent"
+          placeholder="startDateEvent"
           onChange={handleChange}
         />
-
+        <label>endDate</label>
         <input
-          className="login-input"
-          type="text"
-          id="link"
-          placeholder="link"
+          type="date"
+          id="endDateEvent"
+          placeholder="endDateEvent"
           onChange={handleChange}
         />
-        <Link to="/task">
-          <button id="login-button" tabindex="-1" onClick={addTask}>
-            Add Task
-          </button>
-        </Link>
+        {/* </div> */}
+        <button id="task-button" tabindex="-1" onClick={addEvent}>
+          addEvent
+        </button>
       </div>
     </div>
   );
 };
-export default AddTask;
+export default AddEvent;

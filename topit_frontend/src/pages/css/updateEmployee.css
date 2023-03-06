@@ -1,0 +1,12 @@
+.update-employee {
+  /* background-color: red; */
+  width: calc(100% - 150px);
+  margin-left: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#signup-div.update-employee {
+  width: 290px;
+  margin: 0;
+}
