@@ -5,7 +5,10 @@ import com.example.TopIt.models.Employees;
 import com.example.TopIt.models.Tasks;
 import com.example.TopIt.repository.TaskRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,16 +26,19 @@ public class TaskService {
         task.setTaskCode(UUID.randomUUID().toString());
         return repository.save(task);
     }
-    public Tasks addFileTask(Tasks tasks){
-        return repository.save(tasks);
-    }
-
     public List<Tasks> findAllTasks(){
         return repository.findAll();
     }
 
-    public Tasks updateTask(Tasks task){
-        return repository.save(task);
+    public Tasks updateTask(Tasks task ,Long id){
+        return repository.findTaskById(id)
+                .map(user -> {
+                    user.setNameTask(task.getNameTask());
+                    user.setDescription(task.getDescription());
+                    user.setEndDate(task.getEndDate());
+                    user.setLink(task.getLink());
+                    return repository.save(user);
+                }).orElseThrow(() ->new UserNotFoundExeption("User by id "+ id+" was not found"));
     }
 
     public Tasks findTaskById(Long id){

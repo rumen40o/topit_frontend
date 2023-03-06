@@ -8,8 +8,5 @@ import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Tasks,Long> {
 
-
-
-
     Optional<Tasks> findTaskById(Long id);
 }

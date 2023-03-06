@@ -1,11 +1,12 @@
 package com.example.TopIt.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 @Entity
 @Setter
@@ -23,7 +24,10 @@ public class Events {
 
     private String description;
 
-    private LocalDateTime startDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date startDateEvent;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date endDateEvent;
 
     @Column(nullable = false,updatable = false)
     private String EventCode;

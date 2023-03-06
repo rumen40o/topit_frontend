@@ -34,7 +34,7 @@ public class EmployeeService {
                     user.setEmail(employees.getEmail());
                     user.setJobTitle(employees.getJobTitle());
                     user.setPhone(employees.getPhone());
-                    user.setImageURl(employees.getImageURl());
+                    user.setImageURL(employees.getImageURL());
                     return repository.save(user);
                 })
                 .orElseThrow(() -> new UserNotFoundExeption("User by id "+ id+" was not found"));

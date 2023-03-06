@@ -6,28 +6,38 @@
 //import org.springframework.security.core.userdetails.UserDetails;
 //
 //import java.util.Collection;
-//import java.util.List;
 //
 //@Data
 //@NoArgsConstructor
 //@AllArgsConstructor
-//
-//@Entity
+//@Entity(name = "User")
+//@Table(name = "user")
 //public class User implements UserDetails {
 //
 //    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
 //    private Long id;
 //
-//    private String firstname;
+//    @Column(name = "f_name")
+//    private String firstName;
 //
-//    private String lastname;
+//    @Column(name = "l_name")
+//    private String lastName;
 //
+//    @Column(name = "email", unique = true)
 //    private String email;
 //
+//    @Column(name = "password")
 //    private String password;
 //
 //    private Boolean administrator = false;
+//
+//    public User(String firstName, String lastName, String email, String password) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.password = password;
+//    }
 //
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {

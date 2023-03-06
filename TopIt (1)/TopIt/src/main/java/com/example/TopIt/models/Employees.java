@@ -1,6 +1,5 @@
 package com.example.TopIt.models;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +26,7 @@ public class Employees {
 
     private String phone;
 
-    private String imageURl;
+    private String imageURL;
 
 @Column(nullable = false,updatable = false)
     private String employeeCode;

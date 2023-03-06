@@ -6,11 +6,13 @@ import com.example.TopIt.services.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/task")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
     private final TaskService taskService;
@@ -27,7 +29,7 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
     @GetMapping("/user/all")
-    public ResponseEntity<List<Tasks>> getAllTasksUser(){
+    public ResponseEntity<List<Tasks>> getAllTasksUser() {
         List<Tasks> tasks = taskService.findAllTasks();
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
@@ -35,6 +37,7 @@ public class TaskController {
     @GetMapping("/admin/find/{id}")
     public ResponseEntity<Tasks> getTaskByIdAdmin(@PathVariable("id") Long id){
         Tasks tasks= taskService.findTaskById(id);
+        System.out.println(tasks.getEndDate());
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
     @GetMapping("/user/find/{id}")
@@ -48,15 +51,12 @@ public class TaskController {
         Tasks newTask = taskService.addTask(tasks);
         return new ResponseEntity<>(newTask, HttpStatus.CREATED);
     }
-    @PostMapping("/user/add")
-    public ResponseEntity<Tasks> addFileTask(@RequestBody Tasks tasks) {
-        Tasks newTask = taskService.addFileTask(tasks);
-        return new ResponseEntity<>(newTask, HttpStatus.CREATED);
-    }
 
-    @PutMapping("/admin/update")
-    public ResponseEntity<Tasks> updateTask(@RequestBody Tasks tasks) {
-        Tasks updateTask = taskService.updateTask(tasks);
+
+    @PutMapping("/admin/update/{id}")
+    public ResponseEntity<Tasks> updateTask(@RequestBody Tasks tasks, @PathVariable Long id) {
+        System.out.println(tasks.getEndDate());
+        Tasks updateTask = taskService.updateTask(tasks,id);
         return new ResponseEntity<>(updateTask, HttpStatus.OK);
     }
 

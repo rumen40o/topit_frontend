@@ -3,18 +3,16 @@ package com.example.TopIt.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.io.File;
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class Tasks {
 
     @Id
@@ -26,10 +24,11 @@ public class Tasks {
 
     private String description;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDateTime endDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date endDate;
 
-    private String file;
+
+    private String link;
 
     @ManyToOne
     @JoinColumn(name = "teams_id")
@@ -37,8 +36,4 @@ public class Tasks {
 
     @Column(nullable = false,updatable = false)
     private String TaskCode;
-
-
-
-
 }

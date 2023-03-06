@@ -16,9 +16,7 @@
 //@Configuration
 //@RequiredArgsConstructor
 //public class ApplicationConfig {
-//
 //    private final UserRepository repository;
-//
 //
 //    @Bean
 //    public UserDetailsService userDetailsService() {
