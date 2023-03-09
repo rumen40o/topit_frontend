@@ -13,7 +13,7 @@
 //public interface UserRepository extends JpaRepository<User, Long> {
 //    Optional<User> findByEmail(String email);
 //
-//    @Query(value = "INSERT INTO user (f_name, l_name, email, password) VALUES (:f_name, :l_name, :email, :password)", nativeQuery = true)
+//    @Query(value = "INSERT INTO user_model (f_name, l_name, email, password) VALUES (:f_name, :l_name, :email, :password)", nativeQuery = true)
 //    @Transactional
 //    void save(@Param("f_name") String fName, @Param("l_name") String lName, @Param("email") String email, @Param("password") String password);
 //}

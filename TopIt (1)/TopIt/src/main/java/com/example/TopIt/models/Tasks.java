@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +26,7 @@ public class Tasks {
     private String description;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date endDate;
+    private LocalDate endDate;
 
 
     private String link;

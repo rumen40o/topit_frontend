@@ -11,7 +11,7 @@
 //@NoArgsConstructor
 //@AllArgsConstructor
 //@Entity(name = "User")
-//@Table(name = "user")
+//@Table(name = "user_model")
 //public class User implements UserDetails {
 //
 //    @Id

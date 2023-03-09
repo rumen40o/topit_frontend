@@ -5,6 +5,7 @@
 //import com.example.TopIt.models.RegisterRequest;
 //import com.example.TopIt.models.User;
 //import com.example.TopIt.repository.UserRepository;
+//import com.google.gson.Gson;
 //import lombok.RequiredArgsConstructor;
 //import org.springframework.dao.DataIntegrityViolationException;
 //import org.springframework.http.HttpStatus;
@@ -25,9 +26,7 @@
 //
 //    public ResponseEntity register(RegisterRequest request) {
 //        try {
-//            System.out.println("IN REGISTER AUTHENTICATION SERVICE");
-//
-//            repository.save(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword());
+//            repository.save(new User(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword()));
 //
 //            return ResponseEntity.ok(null);
 //        } catch (DataIntegrityViolationException exp) {
@@ -35,7 +34,7 @@
 //        }
 //    }
 //
-//    public AuthenticationResponse login(AuthenticationRequest request) {
+//    public ResponseEntity<String> login(AuthenticationRequest request) {
 //        manager.authenticate(
 //                new UsernamePasswordAuthenticationToken(
 //                        request.getEmail(),
@@ -47,8 +46,6 @@
 //
 //        var jwtToken = jwtService.generateToken(user);
 //
-//        return AuthenticationResponse.builder()
-//                .token(jwtToken)
-//                .build();
+//        return ResponseEntity.ok(new Gson().toJson(jwtToken));
 //    }
 //}

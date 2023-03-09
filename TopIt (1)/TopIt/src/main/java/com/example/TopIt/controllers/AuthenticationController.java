@@ -14,13 +14,13 @@
 //@RequiredArgsConstructor
 //public class AuthenticationController {
 //    private final AuthenticationService authenticationService;
-//
 //    @PostMapping("/register")
 //    public ResponseEntity register(@RequestBody RegisterRequest request) {
 //        return authenticationService.register(request);
 //    }
-//    @GetMapping("/login")
-//    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request){
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody AuthenticationRequest request){
+//        System.out.println("Hello rumene.");
 //        return ResponseEntity.ok(authenticationService.login(request));
 //    }
 //}
