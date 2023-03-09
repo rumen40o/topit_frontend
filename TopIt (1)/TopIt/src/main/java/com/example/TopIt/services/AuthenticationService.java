@@ -20,9 +20,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UserRepository repository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthenticationManager manager;
 
     public ResponseEntity register(RegisterRequest request) {
         try {
@@ -35,16 +33,9 @@ public class AuthenticationService {
     }
 
     public ResponseEntity<String> login(AuthenticationRequest request) {
-        manager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+        User user = repository.findByEmail(request.getEmail()).orElseThrow();
 
-        var user = repository.findByEmail(request.getEmail()).orElseThrow();
-
-        var jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtService.generateToken(user);
 
         return ResponseEntity.ok(new Gson().toJson(jwtToken));
     }

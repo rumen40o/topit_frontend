@@ -34,12 +34,12 @@ public class JwtService {
     }
 
     public String generateToken(
-            Map<String,Object> extractClaims,
+            Map<String,Object> extraClaims,
             UserDetails userDetails
     ){
         return Jwts
                 .builder()
-                .setClaims(extractClaims)
+                .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TIME_TO_EXPIRE))
@@ -60,7 +60,7 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    private Claims extractAllClaims(String token){
+    private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
