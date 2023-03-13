@@ -24,13 +24,18 @@ function AddEmpTest() {
   };
   const addEmployee = () => {
     axios
-      .post("http://localhost:8081/employee/admin/add", {
+      .post("http://localhost:8081/employee/admin/add", JSON.stringify({
         name: data.name,
         email: data.email,
         jobTitle: data.jobTitle,
         phone: data.phone,
         imageURL: data.imageURL,
-      })
+      }), {
+   		headers: {
+      		'Authorization': "Bearer " + localStorage.token,
+			'Content-Type': 'text/json'
+   		}
+	})
       .then(() => {
         console.log("function successfull");
         console.log("data.imageURL: " + data.imageURL);

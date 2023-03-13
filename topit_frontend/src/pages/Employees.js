@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Employee from "../components/Employee";
 import axios from "axios";
 import "./css/employees.css";
-import searchIMG from "C:/Users/User/Desktop/diplomna/topit_frontend/topit_frontend/src/icons8-search.svg";
+import searchIMG from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/icons8-search.svg";
 import AddEmployee from "../components/AddEmployee";
 
 const Employees = () => {
@@ -12,7 +12,12 @@ const Employees = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/employee/admin/all")
+      .get("http://localhost:8081/employee/admin/all",{
+        headers: {
+      		'Authorization': "Bearer " + localStorage.token,
+			'Content-Type': 'text/json'
+   		}
+      })
       .then((res) => {
         console.log("Getting from ::::::", res.data);
         setData(res.data);

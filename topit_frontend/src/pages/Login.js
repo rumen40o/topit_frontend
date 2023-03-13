@@ -2,7 +2,7 @@ import "./css/login.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import topit_logo from "C:/Users/User/Desktop/diplomna/topit_frontend/topit_frontend/src/topit_logo.svg";
+import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
 
 const Login = (props) => {
   const [loginInfo, setLoginInfo] = useState([
@@ -22,11 +22,13 @@ const Login = (props) => {
   };
   const handleClick = () => {
     axios
-      .post("http://localhost:8080/auth/login", {
+      .post("http://localhost:8081/auth/login", {
         email: loginInfo.email,
         password: loginInfo.password,
       })
-      .then((response) => props.setUser(response));
+      .then((response) => localStorage.setItem('token', response.data))
+
+      
   };
 
   return (

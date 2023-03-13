@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import axios from "axios";
 import { useState } from "react";
 import "./css/register.css";
-import topit_logo from 'C:/Users/User/Desktop/diplomna/topit_frontend/topit_frontend/src/topit_logo.svg';
+import topit_logo from 'C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg';
 
 
 const Account = () => {
@@ -22,7 +22,7 @@ const Account = () => {
 
     const handleClick = () => {
             data.password === unPassword ?
-            axios.post('http://localhost:8080/auth/register',{
+            axios.post('http://localhost:8081/auth/register',{
             firstname:data.firstname,
             lastname:data.lastname,
             email:data.email,
