@@ -26,12 +26,20 @@ const AddTask = () => {
 
   const addTask = () => {
     axios
-      .post("http://localhost:8081/task/admin/add", {
-        nameTask: data.nameTask,
-        description: data.description,
-        endDate: data.endDate,
-        link: data.link,
-      })
+      .post(
+        "http://localhost:8081/task/admin/add",
+        {
+          nameTask: data.nameTask,
+          description: data.description,
+          endDate: data.endDate,
+          link: data.link,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.token,
+          },
+        }
+      )
       .then(() => {
         console.log("function successfull");
       });

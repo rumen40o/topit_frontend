@@ -83,7 +83,7 @@
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="14.4" />
+          <database-version value="14.6" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
@@ -167,7 +167,7 @@
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="14.4" />
+          <database-version value="14.6" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />

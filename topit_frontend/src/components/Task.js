@@ -8,7 +8,11 @@ const Tasks = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/task/admin/all")
+      .get("http://localhost:8081/task/admin/all", {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      })
       .then((res) => {
         console.log("Getting from ::::::", res.data);
         setData(res.data);
@@ -18,7 +22,11 @@ const Tasks = () => {
 
   const deleteTask = (id, e) => {
     axios
-      .delete(`http://localhost:8081/task/admin/delete/${id}`)
+      .delete(`http://localhost:8081/task/admin/delete/${id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      })
       .then(() => console.log("function successfull"))
       .then(window.location.reload());
   };

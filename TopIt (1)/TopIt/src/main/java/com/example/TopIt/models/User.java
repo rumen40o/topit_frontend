@@ -11,23 +11,20 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "User")
-@Table(name = "user_model")
+@Table(name="user_model")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "f_name")
     private String firstName;
 
-    @Column(name = "l_name")
     private String lastName;
 
-    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password")
+
     private String password;
 
     private Boolean administrator = false;

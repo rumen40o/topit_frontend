@@ -19,6 +19,8 @@ public class EmployeeService {
     }
 
     public Employees addEmployee(Employees employees){
+        System.out.println("First name: " + employees);
+
        employees.setEmployeeCode(UUID.randomUUID().toString());
        return repository.save(employees);
     }

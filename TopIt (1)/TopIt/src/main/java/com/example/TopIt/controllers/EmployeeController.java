@@ -2,16 +2,18 @@ package com.example.TopIt.controllers;
 
 
 import com.example.TopIt.models.Employees;
+import com.example.TopIt.models.User;
 import com.example.TopIt.services.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -41,7 +43,10 @@ public class EmployeeController {
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
     @PostMapping("/admin/add")
-    public ResponseEntity<Employees> addEmployee(@RequestBody Employees employees) {
+    public ResponseEntity<Employees> addEmployee(@RequestBody Employees employees,  User u) {
+        if (!u.getAdministrator())
+            return new ResponseEntity<>(null, HttpStatus.valueOf(403));
+
         Employees newEmployee = employeeService.addEmployee(employees);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }

@@ -32,19 +32,32 @@ const UpdateEmployees = () => {
 
   const updateEmployee = () => {
     axios
-      .put(`http://localhost:8081/employee/admin/update/${id}`, {
-        name: data.name,
-        email: data.email,
-        jobTitle: data.jobTitle,
-        phone: data.phone,
-        imageURL: data.imageURL,
-      })
+      .put(
+        `http://localhost:8081/employee/admin/update/${id}`,
+        {
+          name: data.name,
+          email: data.email,
+          jobTitle: data.jobTitle,
+          phone: data.phone,
+          imageURL: data.imageURL,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.token,
+          },
+        }
+      )
       .then(() => console.log("function successfull"))
       .then(window.location.reload());
   };
   const loadEmployee = async () => {
     const result = await axios.get(
-      `http://localhost:8081/employee/admin/find/${id}`
+      `http://localhost:8081/employee/admin/find/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      }
     );
     setData(result.data);
   };

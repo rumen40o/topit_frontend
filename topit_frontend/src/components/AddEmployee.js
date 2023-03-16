@@ -22,27 +22,31 @@ function AddEmpTest() {
       [name]: value,
     }));
   };
+
+  const token = localStorage.getItem("token");
   const addEmployee = () => {
     axios
-      .post("http://localhost:8081/employee/admin/add", JSON.stringify({
-        name: data.name,
-        email: data.email,
-        jobTitle: data.jobTitle,
-        phone: data.phone,
-        imageURL: data.imageURL,
-      }), {
-   		headers: {
-      		'Authorization': "Bearer " + localStorage.token,
-			'Content-Type': 'text/json'
-   		}
-	})
+      .post(
+        "http://localhost:8081/employee/admin/add",
+        {
+          name: data.name,
+          email: data.email,
+          jobTitle: data.jobTitle,
+          phone: data.phone,
+          imageURL: data.imageURL,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.token,
+          },
+        }
+      )
       .then(() => {
         console.log("function successfull");
         console.log("data.imageURL: " + data.imageURL);
       })
       .then(window.location.reload());
   };
-
   return (
     <div id="add-emp">
       <button id="add-emp-button">

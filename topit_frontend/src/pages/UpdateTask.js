@@ -26,17 +26,30 @@ const UpdateTask = () => {
   };
   const updateTask = () => {
     axios
-      .put(`http://localhost:8081/task/admin/update/${id}`, {
-        nameTask: data.nameTask,
-        description: data.description,
-        endDate: data.endDate,
-        link: data.link,
-      })
+      .put(
+        `http://localhost:8081/task/admin/update/${id}`,
+        {
+          nameTask: data.nameTask,
+          description: data.description,
+          endDate: data.endDate,
+          link: data.link,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.token,
+          },
+        }
+      )
       .then(() => console.log("function successfull"));
   };
   const loadTask = async () => {
     const result = await axios.get(
-      `http://localhost:8081/task/admin/find/${id}`
+      `http://localhost:8081/task/admin/find/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      }
     );
     console.log(result);
     setData(result.data);

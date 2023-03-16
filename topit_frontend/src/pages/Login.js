@@ -1,8 +1,8 @@
 import "./css/login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import topit_logo from "C:/Users/User/Desktop/diplomna2/topit_frontend/src/topit_logo.svg";
 import axios from "axios";
-import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
 
 const Login = (props) => {
   const [loginInfo, setLoginInfo] = useState([
@@ -11,6 +11,8 @@ const Login = (props) => {
       password: "",
     },
   ]);
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     console.log("boobs");
@@ -26,9 +28,16 @@ const Login = (props) => {
         email: loginInfo.email,
         password: loginInfo.password,
       })
-      .then((response) => localStorage.setItem('token', response.data))
+      .then((response) => localStorage.setItem("token", response.data))
+      .then((response) => console.log(localStorage))
+      .then(console.log("Log in"));
+    navigate("/");
+  };
 
-      
+  const handleLogout = () => {
+    localStorage.clear();
+    console.log(localStorage);
+    window.location.reload();
   };
 
   return (
@@ -60,6 +69,10 @@ const Login = (props) => {
           <a className="login-switch">I don't have an account</a>
         </Link>
       </a>
+
+      {localStorage.token && (
+        <button onClick={() => handleLogout()}>Log out</button>
+      )}
     </div>
   );
 };
