@@ -15,16 +15,15 @@ public class TopItApplication {
 		SpringApplication.run(TopItApplication.class, args);
 	}
 
-//	@Bean
-//	CommandLineRunner createAdmin(UserRepository repo) {
-//		return (e) -> {
-//			try {
-//				User admin = new User("Rumen", "Rusev", "rumen@gmail.com", "rumen");
-//				admin.setAdministrator(true);
-//				repo.save(admin);
-//			} catch (Exception exp) {
-//
-//			}
-//		};
-//	}
+	@Bean
+	CommandLineRunner createAdmin(UserRepository repo) {
+		return (e) -> {
+			try {
+				User admin = new User(1L, "Rumen", "Rusev", "rumen@gmail.com", "rumen", true);
+				repo.save(admin);
+			} catch (Exception exp) {
+
+			}
+		};
+	}
 }

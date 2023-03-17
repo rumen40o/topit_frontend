@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import topit_logo from "C:/Users/User/Desktop/diplomna2/topit_frontend/src/topit_logo.svg";
-
 import "./css/register.css";
+import "./css/form.css";
 
-const Account = () => {
+const Register = () => {
   const [data, setData] = useState([
     {
       firstname: "",
@@ -57,10 +57,9 @@ const Account = () => {
   return (
     <div id="container-signup">
       <img className="login--logo" src={topit_logo} alt="logo"></img>
-      <div id="signup-div">
-        {/* <div id="input-div"> */}
+      <form className="form">
         <input
-          className="login-input"
+          className="form-input"
           type="text"
           id="firstname"
           placeholder="First name"
@@ -68,38 +67,37 @@ const Account = () => {
           autofocus
         />
         <input
-          className="login-input"
+          className="form-input"
           type="text"
           id="lastname"
           placeholder="Last name"
           onChange={handleChange}
         />
         <input
-          className="login-input"
+          className="form-input"
           type="email"
           id="email"
           placeholder="E-mail"
           onChange={handleChange}
         />
         <input
-          className="login-input"
+          className="form-input"
           type="password"
           id="password"
           placeholder="Password"
           onChange={handleChange}
         />
         <input
-          className="login-input"
+          className="form-input"
           type="password"
           id="confirmPassword"
           placeholder="Confirm password"
           onChange={handleChange}
         />
-        {/* </div> */}
-        <button id="login-button" onClick={handleClick}>
+        <button className="form-button" onClick={handleClick}>
           Sign Up
         </button>
-      </div>
+      </form>
       <a className="login-switch">
         <Link to="/login">
           <a className="login-switch">I already have an account</a>
@@ -109,4 +107,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default Register;

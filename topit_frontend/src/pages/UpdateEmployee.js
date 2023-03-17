@@ -33,7 +33,7 @@ const UpdateEmployees = () => {
   const updateEmployee = () => {
     axios
       .put(
-        `http://localhost:8081/employee/admin/update/${id}`,
+        `http://localhost:8081/employee/update/${id}`,
         {
           name: data.name,
           email: data.email,
@@ -52,7 +52,7 @@ const UpdateEmployees = () => {
   };
   const loadEmployee = async () => {
     const result = await axios.get(
-      `http://localhost:8081/employee/admin/find/${id}`,
+      `http://localhost:8081/employee/find/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.token,

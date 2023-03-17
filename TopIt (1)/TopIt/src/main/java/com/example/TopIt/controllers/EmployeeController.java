@@ -21,46 +21,46 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     
-    @GetMapping("/admin/all")
+    @GetMapping("/all")
     public ResponseEntity<List<Employees>> getAllEmployeesAdmin(){
         List<Employees> employees = employeeService.findAllEployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
-    @GetMapping("/user/all")
-    public ResponseEntity<List<Employees>> getAllEmployeesUser(){
-        List<Employees> employees = employeeService.findAllEployees();
-        return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
 
-    @GetMapping("/admin/find/{id}")
-    public ResponseEntity<Employees> getEmployeesByIdAdmin(@PathVariable("id") Long id){
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Employees> getEmployeesByIdAdmin(@PathVariable("id") Long id) {
         Employees employees = employeeService.findEmployeeById(id);
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
-    @GetMapping("/user/find/{id}")
-    public ResponseEntity<Employees> getEmployeesByIdUser(@PathVariable("id") Long id){
-        Employees employees = employeeService.findEmployeeById(id);
-        return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
-    @PostMapping("/admin/add")
-    public ResponseEntity<Employees> addEmployee(@RequestBody Employees employees,  User u) {
-        if (!u.getAdministrator())
+    @PostMapping("/add")
+    public ResponseEntity<Employees> addEmployee(@RequestBody Employees employees, @AuthenticationPrincipal User u) {
+        if (!u.getAdministrator()) {
             return new ResponseEntity<>(null, HttpStatus.valueOf(403));
+        }else {
 
-        Employees newEmployee = employeeService.addEmployee(employees);
-        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
+            Employees newEmployee = employeeService.addEmployee(employees);
+            return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
+        }
     }
 
-    @PutMapping("/admin/update/{id}")
-    public ResponseEntity<Employees> updateEmployee(@RequestBody Employees employee, @PathVariable Long id) {
-        Employees updateEmployee = employeeService.updateEmployee(employee,id);
-        return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Employees> updateEmployee(@RequestBody Employees employee, @PathVariable Long id,@AuthenticationPrincipal User u) {
+        if (!u.getAdministrator()) {
+            return new ResponseEntity<>(null, HttpStatus.valueOf(403));
+        }else {
+            Employees updateEmployee = employeeService.updateEmployee(employee, id);
+            return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
+        }
     }
 
-    @DeleteMapping("/admin/delete/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
-        employeeService.deleteEmployee(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id,@AuthenticationPrincipal User u) {
+        if (!u.getAdministrator()) {
+            return new ResponseEntity<>(null, HttpStatus.valueOf(403));
+        }else {
+            employeeService.deleteEmployee(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 
 }

@@ -27,7 +27,7 @@ function AddEmpTest() {
   const addEmployee = () => {
     axios
       .post(
-        "http://localhost:8081/employee/admin/add",
+        "http://localhost:8081/employee/add",
         {
           name: data.name,
           email: data.email,

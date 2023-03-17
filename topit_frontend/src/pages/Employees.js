@@ -12,7 +12,7 @@ const Employees = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/employee/admin/all", {
+      .get("http://localhost:8081/employee/all", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Access-Control-Allow-Origin": "*",

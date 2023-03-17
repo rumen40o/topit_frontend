@@ -13,7 +13,7 @@ export default function Employee(props) {
   const [optionsIsDisabled, setOptionsIsDisabled] = useState(true);
   const deleteEmployee = (id, e) => {
     axios
-      .delete(`http://localhost:8081/employee/admin/delete/${id}`, {
+      .delete(`http://localhost:8081/employee/delete/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
