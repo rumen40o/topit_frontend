@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./css/addEvent.css";
+import { Link } from "react-router-dom";
 
 const AddEvent = () => {
   const [data, setData] = useState([
@@ -24,21 +25,25 @@ const AddEvent = () => {
 
   const addEvent = () => {
     axios
-      .post("http://localhost:8081/event/admin/add", {
+      .post("http://localhost:8081/event/add", {
         name: data.name,
         description: data.description,
         startDateEvent: data.startDateEvent,
         endDateEvent: data.endDateEvent,
-      })
+      },{
+        headers: {
+        Authorization: "Bearer " + localStorage.token,
+      }
+    })
       .then(() => {
         console.log("function successfull");
       });
   };
   return (
-    <div>
-      <div className="add-task">
-        {/* <div id=""> */}
+    <div className="login">
+      <form className="form">
         <input
+        className="form-input"
           type="text"
           id="name"
           placeholder="name"
@@ -46,6 +51,7 @@ const AddEvent = () => {
           autofocus
         />
         <input
+        className="form-input"
           type="text"
           id="description"
           placeholder="description"
@@ -53,6 +59,7 @@ const AddEvent = () => {
         />
         <label>startDate</label>
         <input
+        className="form-input"
           type="date"
           id="startDateEvent"
           placeholder="startDateEvent"
@@ -60,17 +67,22 @@ const AddEvent = () => {
         />
         <label>endDate</label>
         <input
+        className="form-input"
           type="date"
           id="endDateEvent"
           placeholder="endDateEvent"
           onChange={handleChange}
         />
-        {/* </div> */}
-        <button id="task-button" tabindex="-1" onClick={addEvent}>
+        <button className="form-button">
+        <Link to={"/event"}>
+        <button className="form-button" tabindex="-1" onClick={addEvent}>
           addEvent
         </button>
+        </Link>
+        </button>
+        </form>
       </div>
-    </div>
+   
   );
 };
 export default AddEvent;

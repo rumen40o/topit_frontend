@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import topit_logo from "C:/Users/User/Desktop/diplomna2/topit_frontend/src/topit_logo.svg";
+import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
 import "./css/register.css";
 import "./css/form.css";
 
@@ -17,11 +17,8 @@ const Register = () => {
 
   console.log(data);
 
-  const [unPassword, setUnPassword] = useState("");
-
   const handleClick = () => {
-    data.password === unPassword
-      ? axios
+     axios
           .post("http://localhost:8081/auth/register", {
             firstname: data.firstname,
             lastname: data.lastname,
@@ -29,29 +26,15 @@ const Register = () => {
             password: data.password,
           })
           .then(() => console.log("registration successfull"))
-      : console.log("paroalta e ta6ak");
   };
 
   const handleChange = (event) => {
-    const { id, value } = event.target;
-
-    if (id === "confirmPassword") {
-      if (value === unPassword) {
-        setData((prevData) => ({
-          ...prevData,
-          password: value,
-        }));
-      } else {
-        console.log("passwords don't match");
-      }
-    } else if (id === "password") {
-      setUnPassword(value);
-    } else {
-      setData((prevData) => ({
-        ...prevData,
-        [id]: value,
-      }));
-    }
+    console.log("works");
+    const { name, value } = event.target;
+    setData((prevLoginInfo) => ({
+      ...prevLoginInfo,
+      [name]: value,
+    }));
   };
 
   return (
@@ -61,7 +44,7 @@ const Register = () => {
         <input
           className="form-input"
           type="text"
-          id="firstname"
+          name="firstname"
           placeholder="First name"
           onChange={handleChange}
           autofocus
@@ -69,29 +52,22 @@ const Register = () => {
         <input
           className="form-input"
           type="text"
-          id="lastname"
+          name="lastname"
           placeholder="Last name"
           onChange={handleChange}
         />
         <input
           className="form-input"
           type="email"
-          id="email"
+          name="email"
           placeholder="E-mail"
           onChange={handleChange}
         />
         <input
           className="form-input"
           type="password"
-          id="password"
+          name="password"
           placeholder="Password"
-          onChange={handleChange}
-        />
-        <input
-          className="form-input"
-          type="password"
-          id="confirmPassword"
-          placeholder="Confirm password"
           onChange={handleChange}
         />
         <button className="form-button" onClick={handleClick}>

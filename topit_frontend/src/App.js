@@ -14,6 +14,7 @@ import AddEvent from "./pages/AddEvent";
 import ViewTask from "./pages/ViewTask";
 import UpdateTask from "./pages/UpdateTask";
 import { useState } from "react";
+import ViewEvent from "./pages/viewEvent";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -101,6 +102,15 @@ function App() {
               <>
                 <NavBar selectedButtonId={3} />
                 <AddEvent />
+              </>
+            }
+          />
+          <Route
+            path="/viewEvent/:id"
+            element={
+              <>
+                <NavBar selectedButtonId={3} />
+                <ViewEvent />
               </>
             }
           />

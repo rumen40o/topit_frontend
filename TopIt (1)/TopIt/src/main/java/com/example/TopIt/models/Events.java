@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Setter
@@ -25,9 +25,9 @@ public class Events {
     private String description;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date startDateEvent;
+    private LocalDate startDateEvent;
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date endDateEvent;
+    private LocalDate endDateEvent;
 
     @Column(nullable = false,updatable = false)
     private String EventCode;

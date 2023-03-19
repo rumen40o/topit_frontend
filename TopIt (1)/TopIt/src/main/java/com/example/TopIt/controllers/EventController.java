@@ -1,9 +1,11 @@
 package com.example.TopIt.controllers;
 
 import com.example.TopIt.models.Events;
+import com.example.TopIt.models.User;
 import com.example.TopIt.services.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,42 +22,46 @@ public class EventController {
     }
 
 
-    @GetMapping("/admin/all")
+    @GetMapping("/all")
     public ResponseEntity<List<Events>> getAllEventAdmin(){
         List<Events> events = eventService.findAllEvents();
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
-    @GetMapping("/user/all")
-    public ResponseEntity<List<Events>> getAllEventUser(){
-        List<Events> events = eventService.findAllEvents();
-        return new ResponseEntity<>(events, HttpStatus.OK);
-    }
 
-    @GetMapping("/admin/find/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Events> getEventByIdAdmin(@PathVariable("id") Long id){
         Events events = eventService.findEventById(id);
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
-    @GetMapping("/user/find/{id}")
-    public ResponseEntity<Events> getEventByIdUser(@PathVariable("id") Long id){
-        Events events = eventService.findEventById(id);
-        return new ResponseEntity<>(events, HttpStatus.OK);
-    }
-    @PostMapping("/admin/add")
-    public ResponseEntity<Events> addEvent(@RequestBody Events events) {
-       Events newEvent = eventService.addEvent(events);
+
+    @PostMapping("/add")
+    public ResponseEntity<Events> addEvent(@RequestBody Events events, @AuthenticationPrincipal User u) {
+        if (!u.getAdministrator()) {
+        return new ResponseEntity<>(null, HttpStatus.valueOf(403));
+    }else {
+
+        Events newEvent = eventService.addEvent(events);
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }
-
-    @PutMapping("/admin/update")
-    public ResponseEntity<Events> updateEvent(@RequestBody Events events){
-       Events updateEvent = eventService.updateEvent(events);
-        return new ResponseEntity<>(updateEvent, HttpStatus.OK);
     }
 
-    @DeleteMapping("/admin/delete/{id}")
-    public ResponseEntity<?> deleteEvent(@PathVariable("id") Long id) {
-        eventService.deleteEvent(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PutMapping("/update")
+    public ResponseEntity<Events> updateEvent(@RequestBody Events events,@AuthenticationPrincipal User u){
+        if (!u.getAdministrator()) {
+            return new ResponseEntity<>(null, HttpStatus.valueOf(403));
+        }else {
+            Events updateEvent = eventService.updateEvent(events);
+            return new ResponseEntity<>(updateEvent, HttpStatus.OK);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteEvent(@PathVariable("id") Long id,@AuthenticationPrincipal User u) {
+        if (!u.getAdministrator()) {
+            return new ResponseEntity<>(null, HttpStatus.valueOf(403));
+        }else {
+            eventService.deleteEvent(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 }

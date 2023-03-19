@@ -18,9 +18,10 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstName;
 
-    private String lastName;
+    private String first_name;
+
+    private String last_name;
 
     private String email;
 
@@ -29,9 +30,9 @@ public class User implements UserDetails {
 
     private Boolean administrator = false;
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String first_name, String last_name, String email, String password) {
+       this.first_name=first_name;
+       this.last_name=last_name;
         this.email = email;
         this.password = password;
     }

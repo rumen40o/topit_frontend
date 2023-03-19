@@ -35,7 +35,7 @@ public class EmployeeController {
     @PostMapping("/add")
     public ResponseEntity<Employees> addEmployee(@RequestBody Employees employees, @AuthenticationPrincipal User u) {
         if (!u.getAdministrator()) {
-            return new ResponseEntity<>(null, HttpStatus.valueOf(40));
+            return new ResponseEntity<>(null, HttpStatus.valueOf(403));
         }else {
 
             Employees newEmployee = employeeService.addEmployee(employees);

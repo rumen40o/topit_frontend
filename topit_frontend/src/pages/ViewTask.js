@@ -17,7 +17,7 @@ const ViewTask = () => {
 
   const loadTask = async () => {
     const result = await axios.get(
-      `http://localhost:8081/task/admin/find/${id}`,
+      `http://localhost:8081/task/find/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.token,

@@ -27,7 +27,7 @@ const AddTask = () => {
   const addTask = () => {
     axios
       .post(
-        "http://localhost:8081/task/admin/add",
+        "http://localhost:8081/task/add",
         {
           nameTask: data.nameTask,
           description: data.description,
@@ -46,10 +46,10 @@ const AddTask = () => {
   };
 
   return (
-    <div className="add-task">
-      <div className="login-div">
+    <div className="login">
+    <form className="form">
         <input
-          className="login-input"
+          className="form-input"
           type="text"
           id="nameTask"
           placeholder="Task name"
@@ -57,14 +57,14 @@ const AddTask = () => {
           autofocus
         />
         <input
-          className="login-input"
+          className="form-input"
           type="text"
           id="description"
           placeholder="description"
           onChange={handleChange}
         />
         <input
-          className="login-input"
+          className="form-input"
           type="date"
           id="endDate"
           placeholder="endDate"
@@ -72,19 +72,19 @@ const AddTask = () => {
         />
 
         <input
-          className="login-input"
+          className="form-input"
           type="text"
           id="link"
           placeholder="link"
           onChange={handleChange}
         />
         <Link to="/task">
-          <button id="login-button" tabindex="-1" onClick={addTask}>
+          <button className="form-button" tabindex="-1" onClick={addTask}>
             Add Task
           </button>
         </Link>
-      </div>
-    </div>
+        </form>
+        </div>
   );
 };
 export default AddTask;

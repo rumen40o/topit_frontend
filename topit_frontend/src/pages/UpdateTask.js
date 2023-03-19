@@ -27,7 +27,7 @@ const UpdateTask = () => {
   const updateTask = () => {
     axios
       .put(
-        `http://localhost:8081/task/admin/update/${id}`,
+        `http://localhost:8081/task/update/${id}`,
         {
           nameTask: data.nameTask,
           description: data.description,
@@ -44,7 +44,7 @@ const UpdateTask = () => {
   };
   const loadTask = async () => {
     const result = await axios.get(
-      `http://localhost:8081/task/admin/find/${id}`,
+      `http://localhost:8081/task/find/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.token,

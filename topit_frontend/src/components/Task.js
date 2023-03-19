@@ -8,7 +8,7 @@ const Tasks = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/task/admin/all", {
+      .get("http://localhost:8081/task/all", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -22,7 +22,7 @@ const Tasks = () => {
 
   const deleteTask = (id, e) => {
     axios
-      .delete(`http://localhost:8081/task/admin/delete/${id}`, {
+      .delete(`http://localhost:8081/task/delete/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },

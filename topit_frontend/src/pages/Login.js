@@ -2,7 +2,7 @@ import "./css/login.css";
 import "./css/form.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import topit_logo from "C:/Users/User/Desktop/diplomna2/topit_frontend/src/topit_logo.svg";
+import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
 import axios from "axios";
 
 const Login = (props) => {
@@ -63,7 +63,7 @@ const Login = (props) => {
         />
         <button className="form-button">Log In</button>
       </form>
-      <a className="login-switch">
+      <a login-switch>
         <Link to="/register">
           <a className="login-switch">I don't have an account</a>
         </Link>
