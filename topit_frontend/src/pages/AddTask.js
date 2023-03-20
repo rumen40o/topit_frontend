@@ -11,6 +11,7 @@ const AddTask = () => {
       description: "",
       endDate: "",
       link: "",
+      descriptionAnswer: ""
     },
   ]);
   console.log(data);
@@ -33,6 +34,7 @@ const AddTask = () => {
           description: data.description,
           endDate: data.endDate,
           link: data.link,
+          descriptionAnswer: null
         },
         {
           headers: {
@@ -78,11 +80,13 @@ const AddTask = () => {
           placeholder="link"
           onChange={handleChange}
         />
+        <button className="form-button">
         <Link to="/task">
           <button className="form-button" tabindex="-1" onClick={addTask}>
             Add Task
           </button>
         </Link>
+        </button>
         </form>
         </div>
   );

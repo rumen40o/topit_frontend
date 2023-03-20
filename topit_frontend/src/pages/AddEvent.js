@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./css/addEvent.css";
-import { Link } from "react-router-dom";
+import { Link ,useLocation} from "react-router-dom";
 
 const AddEvent = () => {
   const [data, setData] = useState([
@@ -39,6 +39,8 @@ const AddEvent = () => {
         console.log("function successfull");
       });
   };
+  const location = useLocation();
+  const startDate = location.state.startDate;
   return (
     <div className="login">
       <form className="form">
@@ -62,7 +64,9 @@ const AddEvent = () => {
         className="form-input"
           type="date"
           id="startDateEvent"
+          value={startDate}
           placeholder="startDateEvent"
+
           onChange={handleChange}
         />
         <label>endDate</label>

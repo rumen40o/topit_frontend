@@ -59,17 +59,18 @@ const UpdateTask = () => {
     loadTask();
   }, []);
   return (
-    <div className="update-task">
-      <div className="login-div">
+    <div className="login">
+    <form className="form">
         <input
           type="text"
-          id="nameTask"
+          className="form-input"
           placeholder="nameTask"
           value={data.nameTask}
           onChange={handleChange}
           autofocus
         />
         <input
+        className="form-input"
           type="text"
           id="description"
           placeholder="description"
@@ -77,6 +78,7 @@ const UpdateTask = () => {
           onChange={handleChange}
         />
         <input
+        className="form-input"
           type="date"
           id="endDate"
           placeholder="EndDate"
@@ -84,18 +86,21 @@ const UpdateTask = () => {
           onChange={handleChange}
         />
         <input
+        className="form-input"
           type="text"
           id="link"
           placeholder="link"
           value={data.link}
           onChange={handleChange}
         />
+        <button className="form-button">
         <Link to="/task">
-          <button id="login-button" tabindex="-1" onClick={updateTask}>
+          <button className="form-button" tabindex="-1" onClick={updateTask}>
             Edit
           </button>
         </Link>
-      </div>
+        </button>
+      </form>
     </div>
   );
 };

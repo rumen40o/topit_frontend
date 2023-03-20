@@ -53,14 +53,22 @@ export default function NavBar(props) {
           isSelected={selectedId === 3 ? true : false}
           handleClick={() => handleClick(3)}
         />
+        <NavbarButton
+          title="Teams"
+          address="/teams"
+          id={4}
+          isSelected={selectedId === 4 ? true : false}
+          handleClick={() => handleClick(4)}
+        />
       </div>
+      
 
       <NavbarButton
         title="Account"
         address="/login"
-        id={4}
-        isSelected={selectedId === 4 ? true : false}
-        handleClick={() => handleClick(4)}
+        id={5}
+        isSelected={selectedId === 5 ? true : false}
+        handleClick={() => handleClick(5)}
       />
     </div>
   );

@@ -11,7 +11,9 @@ import "./calendar.css";
 const Calendar = () => {
   const [data, setData] = useState([]);
  const [selectedEvent, setSelectedEvent] = useState(null);
+ const [selectedDate, setSelectedDate] = useState(null);
  const navigate = useNavigate();
+ 
   
     useEffect(() => {
       axios
@@ -39,8 +41,12 @@ const Calendar = () => {
     const handleEventClick = (info) => {
       setSelectedEvent(info.event);
     };
-    const handleDateClick = () => {
-      navigate("/addEvent")
+    const handleDateClick = (info) => {
+      const selectedDate = info.startStr;
+    setSelectedDate(selectedDate);
+
+    navigate('/addEvent',{state:{startDate: selectedDate}});
+      
     };
   
     const handleCloseModal = () => {
@@ -79,6 +85,7 @@ const Calendar = () => {
           dayMinWidth={"100vh"}
           
         />
+        
         {selectedEvent && <EventModal event={selectedEvent} />}
       </div>
     </div>

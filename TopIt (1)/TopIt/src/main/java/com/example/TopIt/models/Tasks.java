@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -28,8 +26,9 @@ public class Tasks {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate endDate;
 
-
     private String link;
+
+    private String description_answer;
 
     @ManyToOne
     @JoinColumn(name = "teams_id")

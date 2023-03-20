@@ -15,6 +15,7 @@ import ViewTask from "./pages/ViewTask";
 import UpdateTask from "./pages/UpdateTask";
 import { useState } from "react";
 import ViewEvent from "./pages/viewEvent";
+import Teams from "./pages/Teams";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -118,7 +119,7 @@ function App() {
             path="/account"
             element={
               <>
-                <NavBar selectedButtonId={4} />
+                <NavBar selectedButtonId={5} />
                 <Account />
               </>
             }
@@ -127,7 +128,7 @@ function App() {
             path="/login"
             element={
               <>
-                <NavBar selectedButtonId={4} />
+                <NavBar selectedButtonId={5} />
                 <Login setUser={setUser} />
               </>
             }
@@ -136,8 +137,17 @@ function App() {
             path="/register"
             element={
               <>
-                <NavBar selectedButtonId={4} />
+                <NavBar selectedButtonId={5} />
                 <Register />
+              </>
+            }
+          />
+          <Route
+            path="/teams"
+            element={
+              <>
+                <NavBar selectedButtonId={4} />
+                <Teams />
               </>
             }
           />

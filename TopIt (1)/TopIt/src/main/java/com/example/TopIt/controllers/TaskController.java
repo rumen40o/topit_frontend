@@ -45,6 +45,13 @@ public class TaskController {
             return new ResponseEntity<>(newTask, HttpStatus.CREATED);
         }
     }
+    @PutMapping("/add/answer/{id}")
+    public ResponseEntity<Tasks> addAnswer(@RequestBody Tasks tasks,@PathVariable Long id) {
+
+            Tasks newAnswer = taskService. addAnswer(tasks, id);
+            return new ResponseEntity<>(newAnswer, HttpStatus.CREATED);
+
+    }
 
 
     @PutMapping("/update/{id}")

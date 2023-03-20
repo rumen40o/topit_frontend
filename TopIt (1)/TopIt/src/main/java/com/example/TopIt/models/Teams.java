@@ -18,6 +18,14 @@ public class Teams {
 
     private String name;
 
+    @OneToOne
+    @JoinColumn(name = "leader_id_id")
+    private Employees leader_id;
+
+    @ManyToOne
+    @JoinColumn(name = "members_id_id")
+    private Employees members_id;
+
     @Column(nullable = false,updatable = false)
     private String TeamCode;
 }
