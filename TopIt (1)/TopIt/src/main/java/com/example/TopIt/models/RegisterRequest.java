@@ -8,9 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class RegisterRequest {
-    private String firstName;
+    private String first_name;
 
-    private String lastName;
+    private String last_name;
 
     private String email;
 
