@@ -2,7 +2,7 @@ import "./css/login.css";
 import "./css/form.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
+import topit_logo from "C:/Users/User/Desktop/topit_diplomna/topit_frontend/src/topit_logo.svg";
 import axios from "axios";
 
 const Login = (props) => {
@@ -22,19 +22,23 @@ const Login = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios
-      .post("http://localhost:8081/auth/login", {
-        email: loginInfo.email,
-        password: loginInfo.password,
-      })
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.data);
-      });
-    console.log(localStorage);
-    console.log(loginInfo);
-    // navigate("/");
+    if (loginInfo.email == null || loginInfo.password == null) {
+      alert("Не валидни данни");
+    } else {
+      axios
+        .post("http://localhost:8081/auth/login", {
+          email: loginInfo.email,
+          password: loginInfo.password,
+        })
+        .then((response) => {
+          console.log(response);
+          localStorage.setItem("token", response.data);
+        })
+        .then(alert("Logged in"));
+      console.log(localStorage);
+      console.log(loginInfo);
+      // navigate("/");
+    }
   };
 
   const handleLogout = () => {

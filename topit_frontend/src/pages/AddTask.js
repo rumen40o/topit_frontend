@@ -11,7 +11,7 @@ const AddTask = () => {
       description: "",
       endDate: "",
       link: "",
-      descriptionAnswer: ""
+      descriptionAnswer: "",
     },
   ]);
   console.log(data);
@@ -26,30 +26,39 @@ const AddTask = () => {
   };
 
   const addTask = () => {
-    axios
-      .post(
-        "http://localhost:8081/task/add",
-        {
-          nameTask: data.nameTask,
-          description: data.description,
-          endDate: data.endDate,
-          link: data.link,
-          descriptionAnswer: null
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.token,
+    if (
+      data.nameTask == null ||
+      data.description == null ||
+      data.endDate == null ||
+      data.link == null
+    ) {
+      alert("Не валидни данни");
+    } else {
+      axios
+        .post(
+          "http://localhost:8081/task/add",
+          {
+            nameTask: data.nameTask,
+            description: data.description,
+            endDate: data.endDate,
+            link: data.link,
+            descriptionAnswer: null,
           },
-        }
-      )
-      .then(() => {
-        console.log("function successfull");
-      });
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.token,
+            },
+          }
+        )
+        .then(() => {
+          console.log("function successfull");
+        });
+    }
   };
 
   return (
     <div className="login">
-    <form className="form">
+      <form className="form">
         <input
           className="form-input"
           type="text"
@@ -81,14 +90,14 @@ const AddTask = () => {
           onChange={handleChange}
         />
         <button className="form-button">
-        <Link to="/task">
-          <button className="form-button" tabindex="-1" onClick={addTask}>
-            Add Task
-          </button>
-        </Link>
+          <Link to="/task">
+            <button className="form-button" tabindex="-1" onClick={addTask}>
+              Add Task
+            </button>
+          </Link>
         </button>
-        </form>
-        </div>
+      </form>
+    </div>
   );
 };
 export default AddTask;

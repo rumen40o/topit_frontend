@@ -1,15 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
+import topit_logo from "C:/Users/User/Desktop/topit_diplomna/topit_frontend/src/topit_logo.svg";
 import "./css/register.css";
 import "./css/form.css";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([
     {
-      firstname: "",
-      lastname: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
     },
@@ -18,16 +19,26 @@ const Register = () => {
   console.log(data);
 
   const handleClick = () => {
-     axios
-          .post("http://localhost:8081/auth/register", {
-            firstname: data.firstname,
-            lastname: data.lastname,
-            email: data.email,
-            password: data.password,
-          })
-          .then(() => console.log("registration successfull"))
+    if (
+      data.first_name == null ||
+      data.last_name == null ||
+      data.email == null ||
+      data.password == null
+    ) {
+      alert("Не валидни данни");
+    } else {
+      axios
+        .post("http://localhost:8081/auth/register", {
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+          password: data.password,
+        })
+        .then(() => console.log("registration successfull"))
+        .then(navigate("/login"))
+        .then(alert("Signed in"));
+    }
   };
-
   const handleChange = (event) => {
     console.log("works");
     const { name, value } = event.target;
@@ -44,7 +55,7 @@ const Register = () => {
         <input
           className="form-input"
           type="text"
-          name="firstname"
+          name="first_name"
           placeholder="First name"
           onChange={handleChange}
           autofocus
@@ -52,7 +63,7 @@ const Register = () => {
         <input
           className="form-input"
           type="text"
-          name="lastname"
+          name="last_name"
           placeholder="Last name"
           onChange={handleChange}
         />
