@@ -1,0 +1,34 @@
+.Task--button{
+    background-color: #119da4;
+    height: 150px;
+    border-radius: 25px;
+    width: 300px;
+    margin-top: 200px;
+    margin-left: 200px;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #119da4;
+    text-align: center;
+     outline: none;
+    font-weight: 400;
+}
+.fc{
+    height: 50vh;
+    margin-left: 120px;
+    margin-top: 20px;
+    width: 100%;
+    
+}
+.buttons{
+    width: calc(100%-150px);
+    margin-left: 150px;
+}
+.logo {
+    width: 200px;
+    height: 80px;
+    margin-left: 200px;
+  }
+.account--logo{
+    border: none;
+    margin-left: 50%;
+}

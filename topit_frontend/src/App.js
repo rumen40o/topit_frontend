@@ -29,7 +29,6 @@ function App() {
             path="/"
             element={
               <>
-                <NavBar selectedButtonId={0} />
                 <Home />
               </>
             }
