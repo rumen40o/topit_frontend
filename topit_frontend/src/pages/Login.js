@@ -2,13 +2,16 @@ import "./css/login.css";
 import "./css/form.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import topit_logo from "C:/Users/User/Desktop/topit_diplomna/topit_frontend/src/topit_logo.svg";
+import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
 import axios from "axios";
 
 const Login = (props) => {
+  
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
+    first_name: "",
+    last_name: "",
   });
 
   const navigate = useNavigate();
@@ -34,10 +37,10 @@ const Login = (props) => {
           console.log(response);
           localStorage.setItem("token", response.data);
         })
-        .then(alert("Logged in"));
+        .then(alert("Logged in"))
+        .then(navigate("/"))
       console.log(localStorage);
       console.log(loginInfo);
-      // navigate("/");
     }
   };
 
@@ -74,7 +77,11 @@ const Login = (props) => {
       </a>
 
       {localStorage.token && (
+        <div>
+        <label>Welcome</label>
+        <p>{loginInfo.email}</p>
         <button onClick={() => handleLogout()}>Log out</button>
+        </div>
       )}
     </div>
   );
