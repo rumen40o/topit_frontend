@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -18,13 +21,11 @@ public class Teams {
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "leader_id_id")
-    private Employees leader_id;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employees> leader = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "members_id_id")
-    private Employees members_id;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employees> members = new ArrayList<>();
 
     @Column(nullable = false,updatable = false)
     private String TeamCode;

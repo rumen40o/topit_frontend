@@ -13,9 +13,11 @@ import AddTask from "./pages/AddTask";
 import AddEvent from "./pages/AddEvent";
 import ViewTask from "./pages/ViewTask";
 import UpdateTask from "./pages/UpdateTask";
-import { useState } from "react";
+import UpdateEvent from "./pages/UpdateEvent";
 import ViewEvent from "./pages/viewEvent";
-import Teams from "./pages/Teams";
+import { useState } from "react";
+
+import Teams from "./components/Teams";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -48,6 +50,15 @@ function App() {
               <>
                 <NavBar selectedButtonId={1} />
                 <UpdateEmployee />
+              </>
+            }
+          />
+          <Route
+            path="/viewEvent/:id"
+            element={
+              <>
+                <NavBar selectedButtonId={1} />
+                <ViewEvent />
               </>
             }
           />
@@ -106,11 +117,11 @@ function App() {
             }
           />
           <Route
-            path="/viewEvent/:id"
+            path="/updateEvent/:id"
             element={
               <>
                 <NavBar selectedButtonId={3} />
-                <ViewEvent />
+                <UpdateEvent />
               </>
             }
           />

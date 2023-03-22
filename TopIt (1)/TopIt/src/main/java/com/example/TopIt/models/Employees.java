@@ -28,20 +28,11 @@ public class Employees {
 
     private String imageURL;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private Teams team;
 @Column(nullable = false,updatable = false)
     private String employeeCode;
 
 
-    @ManyToOne
-    @JoinColumn(name = "tasks_id")
-    private Tasks tasks;
-
-
-    @ManyToOne
-    @JoinColumn(name = "event_id")
-    private Events event;
-
-    @ManyToOne
-    @JoinColumn(name = "teams_id")
-    private Teams teams;
 }

@@ -45,12 +45,12 @@ public class EventController {
     }
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Events> updateEvent(@RequestBody Events events,@AuthenticationPrincipal User u){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Events> updateEvent(@RequestBody Events events,@AuthenticationPrincipal User u, @PathVariable Long id){
         if (!u.getAdministrator()) {
             return new ResponseEntity<>(null, HttpStatus.valueOf(403));
         }else {
-            Events updateEvent = eventService.updateEvent(events);
+            Events updateEvent = eventService.updateEvent(events, id);
             return new ResponseEntity<>(updateEvent, HttpStatus.OK);
         }
     }

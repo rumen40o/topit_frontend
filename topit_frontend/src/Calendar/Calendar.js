@@ -38,6 +38,7 @@ const Calendar = () => {
         .catch((err) => console.log(err));
     }, []);
 
+    
     const handleEventClick = (info) => {
       setSelectedEvent(info.event);
     };
@@ -52,17 +53,15 @@ const Calendar = () => {
     const handleCloseModal = () => {
       setSelectedEvent(null);
     };
-    const EventModal = ({ event }) => {
+    const EventModal = () => {
       return (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>{event.title}</h2>
-            <p>Start: {event.start.toLocaleString()}</p>
-            {event.end && <p>End: {event.end.toLocaleString()}</p>}
-            {event.extendedProps.description && <p>{event.extendedProps.description}</p>}
-            <button onClick={handleCloseModal}>Close</button>
+          data.map((data, index) => (
+          <div>
+            <Link to={`/viewEvent/${data.id}`}>
+            <button>View</button>
+            </Link>
           </div>
-        </div>
+          ))
       );
     };
 

@@ -45,7 +45,7 @@ const HomeCalendar = () => {
       const selectedDate = info.startStr;
     setSelectedDate(selectedDate);
 
-    navigate('/addEvent',{state:{startDate: selectedDate}});
+    navigate('/event',{state:{startDate: selectedDate}});
       
     };
   
