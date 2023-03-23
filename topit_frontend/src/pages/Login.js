@@ -9,6 +9,8 @@ const Login = (props) => {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
+    first_name: "",
+      last_name: "",
   });
 
   const navigate = useNavigate();
@@ -63,7 +65,9 @@ const Login = (props) => {
           placeholder="Password"
           onChange={handleChange}
         />
+        
         <button className="form-button">Log In</button>
+        
       </form>
       <a login-switch>
         <Link to="/register">

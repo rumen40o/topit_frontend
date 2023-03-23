@@ -125,7 +125,7 @@ function App() {
             }
           />
           <Route
-            path="/account"
+            path="/account/:id"
             element={
               <>
                 <NavBar selectedButtonId={5} />

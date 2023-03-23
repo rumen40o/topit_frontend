@@ -1,9 +1,7 @@
 package com.example.TopIt.services;
 
-import com.example.TopIt.models.AuthenticationRequest;
-import com.example.TopIt.models.AuthenticationResponse;
-import com.example.TopIt.models.RegisterRequest;
-import com.example.TopIt.models.User;
+import com.example.TopIt.exception.UserNotFoundExeption;
+import com.example.TopIt.models.*;
 import com.example.TopIt.repository.UserRepository;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +36,10 @@ public class AuthenticationService {
         String jwtToken = jwtService.generateToken(user);
 
         return ResponseEntity.ok(new Gson().toJson(jwtToken));
+    }
+
+    public User findUserById(Long id){
+        return repository.findUserById(id)
+                .orElseThrow(() -> new UserNotFoundExeption("Event by id "+ id+" was not found"));
     }
 }

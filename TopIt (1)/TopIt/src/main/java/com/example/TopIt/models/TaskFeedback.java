@@ -40,15 +40,8 @@ public class TaskFeedback {
     )
     private Tasks task_id;
 
-    @Column(
-            columnDefinition = "VARCHAR(255)",
-            nullable = false
-    )
+
     private String content;
 
-    @Column(
-            columnDefinition = "DATETIME",
-            nullable = false
-    )
     private LocalDateTime dateTime;
 }
