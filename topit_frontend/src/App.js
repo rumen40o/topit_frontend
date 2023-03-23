@@ -21,7 +21,6 @@ import Teams from "./components/Teams";
 
 function App() {
   const [user, setUser] = useState(undefined);
-  // console.log(user);
 
   return (
     <div className="app">
@@ -163,7 +162,6 @@ function App() {
           />
         </Routes>
       </div>
-      {/* <div className="navbar"></div> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
+import topit_logo from "../assets/topit_logo.svg";
 import "./css/register.css";
 import "./css/form.css";
 

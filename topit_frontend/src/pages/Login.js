@@ -2,16 +2,13 @@ import "./css/login.css";
 import "./css/form.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import topit_logo from "C:/Users/rumen/OneDrive/Работен плот/diplomna1/topit_frontend/src/topit_logo.svg";
+import topit_logo from "../assets/topit_logo.svg";
 import axios from "axios";
 
 const Login = (props) => {
-  
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
-    first_name: "",
-    last_name: "",
   });
 
   const navigate = useNavigate();
@@ -26,8 +23,12 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loginInfo.email == null || loginInfo.password == null) {
-      alert("Не валидни данни");
+      alert("Invalid data");
     } else {
+      localStorage.setItem(
+        "currentUserName",
+        `${loginInfo.first_name} ${loginInfo.last_name}`
+      );
       axios
         .post("http://localhost:8081/auth/login", {
           email: loginInfo.email,
@@ -38,21 +39,15 @@ const Login = (props) => {
           localStorage.setItem("token", response.data);
         })
         .then(alert("Logged in"))
-        .then(navigate("/"))
+        .then(navigate("/"));
       console.log(localStorage);
-      console.log(loginInfo);
+      console.log("loginInfo: " + JSON.stringify(loginInfo));
     }
-  };
-
-  const handleLogout = () => {
-    localStorage.clear();
-    console.log(localStorage);
-    window.location.reload();
   };
 
   return (
     <div className="login">
-      <img className="login--logo" src={topit_logo} alt="logo"></img>
+      <img className="login--logo" src={topit_logo} alt="logo" />
       <form className="form" onSubmit={handleSubmit}>
         <input
           className="form-input"
@@ -75,14 +70,6 @@ const Login = (props) => {
           <a className="login-switch">I don't have an account</a>
         </Link>
       </a>
-
-      {localStorage.token && (
-        <div>
-        <label>Welcome</label>
-        <p>{loginInfo.email}</p>
-        <button onClick={() => handleLogout()}>Log out</button>
-        </div>
-      )}
     </div>
   );
 };
