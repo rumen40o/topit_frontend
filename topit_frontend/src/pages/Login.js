@@ -4,16 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import topit_logo from "../assets/topit_logo.svg";
 import axios from "axios";
+import { useAuth } from "../Contexts/userContext";
 
 const Login = (props) => {
+  const navigate = useNavigate();
+
+  if (localStorage.getItem("token")) navigate("/account");
+
+  const { currentUser, login } = useAuth();
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
-    first_name: "",
-      last_name: "",
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,10 +29,6 @@ const Login = (props) => {
     if (loginInfo.email == null || loginInfo.password == null) {
       alert("Invalid data");
     } else {
-      localStorage.setItem(
-        "currentUserName",
-        `${loginInfo.first_name} ${loginInfo.last_name}`
-      );
       axios
         .post("http://localhost:8081/auth/login", {
           email: loginInfo.email,
@@ -39,6 +37,8 @@ const Login = (props) => {
         .then((response) => {
           console.log(response);
           localStorage.setItem("token", response.data);
+          login({ email: loginInfo.email });
+          console.log(response);
         })
         .then(alert("Logged in"))
         .then(navigate("/"));
@@ -65,9 +65,8 @@ const Login = (props) => {
           placeholder="Password"
           onChange={handleChange}
         />
-        
+
         <button className="form-button">Log In</button>
-        
       </form>
       <a login-switch>
         <Link to="/register">

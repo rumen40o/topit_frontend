@@ -63,4 +63,8 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping("/suggestions")
+    public ResponseEntity<List<User>> findEmployeeSuggestions(@AuthenticationPrincipal User u) {
+        return employeeService.findEmployeeSuggestions(u);
+    }
 }

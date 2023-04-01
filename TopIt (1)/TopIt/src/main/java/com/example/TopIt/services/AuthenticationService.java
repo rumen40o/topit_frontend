@@ -42,4 +42,9 @@ public class AuthenticationService {
         return repository.findUserById(id)
                 .orElseThrow(() -> new UserNotFoundExeption("Event by id "+ id+" was not found"));
     }
+
+    public User findUserByEmail(String email){
+        return repository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundExeption("Event by id "+ email +" was not found"));
+    }
 }

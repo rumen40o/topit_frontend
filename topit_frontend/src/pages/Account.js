@@ -1,35 +1,40 @@
-import { Link, useNavigate ,useParams} from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./css/account.css";
 import topit_logo from "../assets/topit_logo.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useAuth } from "../Contexts/userContext";
 
 const Account = (props) => {
-
-  const [loginInfo, setLoginInfo] = useState([]);
   const navigate = useNavigate();
 
+  if (!localStorage.getItem("token")) {
+    navigate("/login");
+  }
+
+  const { currentUser } = useAuth();
+  const email = currentUser.email;
+
+  const [loginInfo, setLoginInfo] = useState([]);
+
   const handleLogout = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const loadEvent = async () => {
-    const result = await axios.get(
-      `http://localhost:8081/auth/find/${id}`,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.token,
-        },
-      }
-    );
+    const result = await axios.get(`http://localhost:8081/auth/find/${email}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.token,
+      },
+    });
     setLoginInfo(result.data);
   };
 
-useEffect(() => {
-    loadEvent()
+  useEffect(() => {
+    loadEvent();
   }, []);
 
   return (
@@ -41,9 +46,13 @@ useEffect(() => {
         draggable="false"
       />
       <h1 className="account--welcome">WELCOME,</h1>
-      
-        <h2 className="account--name">{loginInfo.first_name}</h2>
-  
+
+      <h2 className="account--name">
+        {loginInfo.first_name}
+
+        {loginInfo.last_name}
+      </h2>
+
       <Link to="/login">
         <button className="account--logout-button" onClick={handleLogout}>
           Log Out

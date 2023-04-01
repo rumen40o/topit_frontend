@@ -22,9 +22,15 @@ public class AuthenticationController {
         return authenticationService.login(request);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        User user = authenticationService.findUserById(id);
+//    @GetMapping("/find/{id}")
+//    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+//        User user = authenticationService.findUserById(id);
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
+
+    @GetMapping("/find/{email}")
+    public ResponseEntity<User> findUserByEmail(@PathVariable("email") String email) {
+        User user = authenticationService.findUserByEmail(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

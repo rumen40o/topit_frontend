@@ -19,21 +19,26 @@ public class User implements UserDetails {
     private Long id;
 
 
-    private String first_name;
+    private String full_name;
 
-    private String last_name;
-
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "phone", unique = true)
+    private String phone;
+
+    private String imageURL;
 
 
     private String password;
 
     private Boolean administrator = false;
 
-    public User(String first_name, String last_name, String email, String password) {
-       this.first_name=first_name;
-       this.last_name=last_name;
+    public User(String full_name, String email, String phone, String imageURL, String password) {
+       this.full_name=full_name;
         this.email = email;
+        this.phone = phone;
+        this.imageURL = imageURL;
         this.password = password;
     }
 
