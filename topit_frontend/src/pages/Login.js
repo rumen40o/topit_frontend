@@ -41,7 +41,8 @@ const Login = (props) => {
           console.log(response);
         })
         .then(alert("Logged in"))
-        .then(navigate("/"));
+        .then(navigate("/"))
+        .then(window.location.reload())
       console.log(localStorage);
       console.log("loginInfo: " + JSON.stringify(loginInfo));
     }

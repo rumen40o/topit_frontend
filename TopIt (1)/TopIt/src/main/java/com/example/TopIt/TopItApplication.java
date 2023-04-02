@@ -19,7 +19,7 @@ public class TopItApplication {
 	CommandLineRunner createAdmin(UserRepository repo) {
 		return (e) -> {
 			try {
-				User admin = new User(1L, "Rumen", "Rusev", "admin@gmail.com", "admin1", true);
+				User admin = new User(1L,"admin", "admin@gmail.com", "admin1", true);
 				repo.save(admin);
 			} catch (Exception exp) {
 

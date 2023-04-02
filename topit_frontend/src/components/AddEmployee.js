@@ -7,8 +7,8 @@ function AddEmpTest() {
     {
       name: "",
       email: "",
-      jobTitle: "",
       phone: "",
+      jobTitle: "",
       imageURL: "",
     },
   ]);
@@ -39,8 +39,8 @@ function AddEmpTest() {
           {
             name: data.name,
             email: data.email,
-            jobTitle: data.jobTitle,
             phone: data.phone,
+            jobTitle: data.jobTitle, 
             imageURL: data.imageURL,
           },
           {
@@ -75,17 +75,17 @@ function AddEmpTest() {
             placeholder="E-mail"
           ></input>
           <input
-            id="job-input"
-            name="jobTitle"
-            onChange={handleChange}
-            placeholder="Occupation"
-          ></input>
-          <input
             type="tel"
             name="phone"
             id="phone-input"
             onChange={handleChange}
             placeholder="Phone"
+          ></input>
+           <input
+            id="job-input"
+            name="jobTitle"
+            onChange={handleChange}
+            placeholder="Occupation"
           ></input>
           <input
             id="avatar-input"

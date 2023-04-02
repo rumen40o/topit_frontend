@@ -22,7 +22,7 @@ public class AuthenticationService {
 
     public ResponseEntity register(RegisterRequest request) {
         try {
-            repository.save(new User(request.getFirst_name(), request.getLast_name(), request.getEmail(), request.getPassword()));
+            repository.save(new User(request.getUsername(), request.getEmail(), request.getPassword()));
 
             return ResponseEntity.ok(null);
         } catch (DataIntegrityViolationException exp) {

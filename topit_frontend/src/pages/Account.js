@@ -48,9 +48,7 @@ const Account = (props) => {
       <h1 className="account--welcome">WELCOME,</h1>
 
       <h2 className="account--name">
-        {loginInfo.first_name}
-
-        {loginInfo.last_name}
+        {loginInfo.username}
       </h2>
 
       <Link to="/login">

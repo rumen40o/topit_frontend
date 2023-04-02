@@ -33,7 +33,10 @@ public class EmployeeService {
     public Employees updateEmployee(Employees employees ,Long id){
         return repository.findEmployeeById(id)
                 .map(user -> {
+                    user.setName(employees.getName());
+                    user.setPhone(employees.getPhone());
                     user.setJobTitle(employees.getJobTitle());
+                    user.setImageURL(employees.getImageURL());
                     return repository.save(user);
                 })
                 .orElseThrow(() -> new UserNotFoundExeption("User by id "+ id+" was not found"));
@@ -49,8 +52,6 @@ public class EmployeeService {
         repository.deleteById(id);
     }
 
-    public ResponseEntity<List<User>> findEmployeeSuggestions(User u) {
-        return ResponseEntity.ok(userRepository.findEmployeeSuggestionsExcept(u.getId()));
-    }
+
     
 }

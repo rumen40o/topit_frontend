@@ -41,7 +41,7 @@ const Teams = () =>{
       </tr>
       {data.map((data, index) => (
         <tr>
-          <td>{data.nameTask}</td>
+          <td>{data.nameTeam}</td>
           <td>
             <Link to={`/viewTeam/${data.id}`}>
               <p className="tasks--link">View</p>

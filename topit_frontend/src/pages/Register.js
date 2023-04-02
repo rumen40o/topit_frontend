@@ -9,8 +9,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([
     {
-      first_name: "",
-      last_name: "",
+      username: "",
       email: "",
       password: "",
     },
@@ -20,8 +19,7 @@ const Register = () => {
 
   const handleClick = () => {
     if (
-      data.first_name == null ||
-      data.last_name == null ||
+      data.username == null ||
       data.email == null ||
       data.password == null
     ) {
@@ -29,8 +27,7 @@ const Register = () => {
     } else {
       axios
         .post("http://localhost:8081/auth/register", {
-          first_name: data.first_name,
-          last_name: data.last_name,
+          username:data.username,
           email: data.email,
           password: data.password,
         })
@@ -55,17 +52,10 @@ const Register = () => {
         <input
           className="form-input"
           type="text"
-          name="first_name"
-          placeholder="first_name"
+          name="username"
+          placeholder="username"
           onChange={handleChange}
           autofocus
-        />
-        <input
-          className="form-input"
-          type="text"
-          name="last_name"
-          placeholder="last_name"
-          onChange={handleChange}
         />
         <input
           className="form-input"

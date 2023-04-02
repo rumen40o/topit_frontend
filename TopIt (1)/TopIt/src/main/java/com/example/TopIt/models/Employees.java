@@ -11,7 +11,6 @@ import java.util.Random;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "employees")
 public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,18 +18,16 @@ public class Employees {
 
     private Long id;
 
+    private String name;
+
+    private String email;
+
+    private String phone;
+
     private String jobTitle;
 
-    @ManyToOne(
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(
-            name = "user_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "user_id")
-    )
-    private User user_id;
+    private String imageURL;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
