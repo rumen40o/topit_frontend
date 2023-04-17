@@ -25,21 +25,10 @@ public class FeedBackController {
         return new ResponseEntity<>(feedbacks, HttpStatus.OK);
     }
 
-    @GetMapping("/findFeedBack")
-    public ResponseEntity<List<String>> getAllUsersEmail(){
-        List<String> user_emails = feedBackService.showTaskFeedback();
-        return new ResponseEntity<>(user_emails, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
-    public ResponseEntity<TaskFeedback> addFeedback(@RequestBody TaskFeedback feedback, @AuthenticationPrincipal User u) {
-        if (!u.getAdministrator()) {
-            return new ResponseEntity<>(null, HttpStatus.valueOf(403));
-        }else {
-
+    public ResponseEntity<TaskFeedback> addFeedback(@RequestBody TaskFeedback feedback) {
             TaskFeedback NewFeedback = feedBackService.addFeedBack(feedback);
             return new ResponseEntity<>(NewFeedback, HttpStatus.CREATED);
-        }
     }
 
 

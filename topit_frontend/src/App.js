@@ -19,6 +19,7 @@ import { useState } from "react";
 import { AuthProvider } from "./Contexts/userContext";
 
 import Teams from "./components/Teams";
+import TaskFeedback from "./components/TaskFeedback";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -60,6 +61,15 @@ function App() {
                 <>
                   <NavBar selectedButtonId={1} />
                   <ViewEvent />
+                </>
+              }
+            />
+            <Route
+              path="/taskFeedback"
+              element={
+                <>
+                  <NavBar selectedButtonId={2} />
+                  <TaskFeedback />
                 </>
               }
             />

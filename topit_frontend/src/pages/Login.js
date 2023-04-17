@@ -12,7 +12,9 @@ const Login = (props) => {
   if (localStorage.getItem("token")) navigate("/account");
 
   const { currentUser, login } = useAuth();
+
   const [loginInfo, setLoginInfo] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -37,6 +39,7 @@ const Login = (props) => {
         .then((response) => {
           console.log(response);
           localStorage.setItem("token", response.data);
+          localStorage.setItem("email", loginInfo.email);
           login({ email: loginInfo.email });
           console.log(response);
         })

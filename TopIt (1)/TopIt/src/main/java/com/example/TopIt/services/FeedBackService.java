@@ -20,8 +20,5 @@ public class FeedBackService {
     public List<TaskFeedback> findAllFeedbacks(){
         return repository.findAll();
     }
-    public List<String> showTaskFeedback(){
-        return repository.showTaskFeedback();
-    }
 
 }

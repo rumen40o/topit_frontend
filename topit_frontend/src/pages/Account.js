@@ -22,8 +22,6 @@ const Account = (props) => {
     navigate("/login");
   };
 
-  // const { id } = useParams();
-
   const loadEvent = async () => {
     const result = await axios.get(`http://localhost:8081/auth/find/${email}`, {
       headers: {
@@ -48,7 +46,7 @@ const Account = (props) => {
       <h1 className="account--welcome">WELCOME,</h1>
 
       <h2 className="account--name">
-        {loginInfo.username}
+        {loginInfo.email}
       </h2>
 
       <Link to="/login">

@@ -21,7 +21,11 @@ public class AuthenticationController {
     public ResponseEntity<String> login(@RequestBody AuthenticationRequest request){
         return authenticationService.login(request);
     }
-
+    @GetMapping("/find/{id}")
+    public ResponseEntity<User> findUserById(@PathVariable("id") Long id) {
+        User user_id = authenticationService.findUserById(id);
+        return new ResponseEntity<>(user_id, HttpStatus.OK);
+    }
     @GetMapping("/find/{email}")
     public ResponseEntity<User> findUserByEmail(@PathVariable("email") String email) {
         User user = authenticationService.findUserByEmail(email);

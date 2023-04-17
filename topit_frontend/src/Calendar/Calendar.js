@@ -5,6 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
+import "../Calendar/calendar.css";
 import axios from "axios";
 
 

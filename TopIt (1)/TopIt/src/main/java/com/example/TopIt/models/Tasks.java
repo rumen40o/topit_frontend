@@ -30,10 +30,6 @@ public class Tasks {
 
     private String team_number;
 
-    @ManyToOne
-    @JoinColumn(name = "teams_id")
-    private Teams teams;
-
     @Column(nullable = false,updatable = false)
     private String TaskCode;
 }

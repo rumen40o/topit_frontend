@@ -22,14 +22,9 @@ public class Teams {
     private String name;
 
 
-    @ManyToOne
-    @JoinColumn(name = "leader_id")
-    private Employees leader;
+    private String leader;
 
-
-    @ManyToOne
-    @JoinColumn(name = "members_id")
-    private Employees members;
+    private String members;
 
     @Column(nullable = false,updatable = false)
     private String TeamCode;

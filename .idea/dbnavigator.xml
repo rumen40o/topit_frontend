@@ -1128,7 +1128,7 @@ select * from tasks;]]></console>
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="14.6" />
+          <database-version value="14.4" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
