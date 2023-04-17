@@ -28,6 +28,8 @@ public class Tasks {
 
     private String link;
 
+    private String team_number;
+
     @ManyToOne
     @JoinColumn(name = "teams_id")
     private Teams teams;

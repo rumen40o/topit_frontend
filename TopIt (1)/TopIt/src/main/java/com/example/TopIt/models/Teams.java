@@ -21,13 +21,15 @@ public class Teams {
 
     private String name;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @ManyToOne
+    @JoinColumn(name = "leader_id")
+    private Employees leader;
 
 
-    private List<Employees> leader = new ArrayList<>();
-
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Employees> members = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "members_id")
+    private Employees members;
 
     @Column(nullable = false,updatable = false)
     private String TeamCode;

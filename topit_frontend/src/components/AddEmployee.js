@@ -40,7 +40,7 @@ function AddEmpTest() {
             name: data.name,
             email: data.email,
             phone: data.phone,
-            jobTitle: data.jobTitle, 
+            jobTitle: data.jobTitle,
             imageURL: data.imageURL,
           },
           {
@@ -56,6 +56,20 @@ function AddEmpTest() {
         .then(window.location.reload());
     }
   };
+
+  const findEmails = () => {
+    axios.get(
+      "http://localhost:8081/employee/allEmails",
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      }.then((res) => {
+        console.log("Getting from ::::::", res.data);
+        setData(res.data);
+      })
+    );
+  };
   return (
     <div id="add-emp">
       <button id="add-emp-button">
@@ -67,13 +81,18 @@ function AddEmpTest() {
             placeholder="Full Name"
             onChange={handleChange}
           ></input>
-          <input
+
+          <select
             type="email"
             name="email"
             id="email-input"
             onChange={handleChange}
             placeholder="E-mail"
-          ></input>
+            onClick={findEmails}
+          >
+            <option>{data.email}</option>;
+          </select>
+
           <input
             type="tel"
             name="phone"
@@ -81,7 +100,7 @@ function AddEmpTest() {
             onChange={handleChange}
             placeholder="Phone"
           ></input>
-           <input
+          <input
             id="job-input"
             name="jobTitle"
             onChange={handleChange}

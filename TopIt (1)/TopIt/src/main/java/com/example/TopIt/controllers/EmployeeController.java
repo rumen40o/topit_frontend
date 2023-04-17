@@ -26,6 +26,11 @@ public class EmployeeController {
         List<Employees> employees = employeeService.findAllEployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
+    @GetMapping("/allEmails")
+    public ResponseEntity<List<String>> getAllUsersEmail(){
+        List<String> user_emails = employeeService.findAllEmails();
+        return new ResponseEntity<>(user_emails, HttpStatus.OK);
+    }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Employees> getEmployeesByIdAdmin(@PathVariable("id") Long id) {

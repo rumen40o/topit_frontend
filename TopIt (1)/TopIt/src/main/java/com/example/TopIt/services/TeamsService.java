@@ -40,4 +40,8 @@ public class TeamsService {
     public void deleteTeam(Long id){
         repository.deleteById(id);
     }
+
+    public List<String> findEmployees(){
+        return repository.findEmployee();
+    }
 }

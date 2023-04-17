@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Random;
+import org.hibernate.annotations.Formula;
 
 @Entity
 @Getter
@@ -28,12 +27,10 @@ public class Employees {
 
     private String imageURL;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Teams team;
-@Column(nullable = false,updatable = false)
+
+    @Column(nullable = false,updatable = false)
     private String employeeCode;
-
-
 }

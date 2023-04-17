@@ -16,7 +16,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
-    private final UserRepository userRepository;
     private final EmployeeRepository repository;
 
     public Employees addEmployee(Employees employees){
@@ -53,5 +52,7 @@ public class EmployeeService {
     }
 
 
-    
+   public List<String> findAllEmails(){
+        return repository.findAllEmails();
+   }
 }

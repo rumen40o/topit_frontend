@@ -1,6 +1,8 @@
 package com.example.TopIt;
 
+import com.example.TopIt.models.Employees;
 import com.example.TopIt.models.User;
+import com.example.TopIt.repository.EmployeeRepository;
 import com.example.TopIt.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

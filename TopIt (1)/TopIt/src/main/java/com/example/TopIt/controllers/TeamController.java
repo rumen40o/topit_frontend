@@ -18,41 +18,36 @@ public class TeamController {
         this.teamsService = teamsService;
     }
 
-    @GetMapping("/admin/all")
-    public ResponseEntity<List<Teams>> getAllTeamAdmin(){
-        List<Teams> teams = teamsService.findAllTeams();
-        return new ResponseEntity<>(teams, HttpStatus.OK);
-    }
-    @GetMapping("/user/all")
+
+    @GetMapping("/all")
     public ResponseEntity<List<Teams>> getAllTeamUser(){
         List<Teams> teams = teamsService.findAllTeams();
         return new ResponseEntity<>(teams, HttpStatus.OK);
     }
-
-    @GetMapping("/admin/find/{id}")
-    public ResponseEntity<Teams> getTaskByIdAdmin(@PathVariable("id") Long id){
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Teams> getTeamsByIdAdmin(@PathVariable("id") Long id){
        Teams teams= teamsService.findTeamsById(id);
         return new ResponseEntity<>(teams, HttpStatus.OK);
     }
-    @GetMapping("/user/find/{id}")
-    public ResponseEntity<Teams> getTaskByIdUser(@PathVariable("id") Long id){
-        Teams teams= teamsService.findTeamsById(id);
-        return new ResponseEntity<>(teams, HttpStatus.OK);
+    @GetMapping("/allEmployees")
+    public ResponseEntity<List<String>> getAllUsersEmail(){
+        List<String> emp = teamsService.findEmployees();
+        return new ResponseEntity<>(emp, HttpStatus.OK);
     }
 
-    @PostMapping("/admin/add")
+    @PostMapping("/add")
     public ResponseEntity<Teams> addTeam(@RequestBody Teams teams) {
         Teams newTeam= teamsService.addTeam(teams);
         return new ResponseEntity<>(newTeam, HttpStatus.CREATED);
     }
 
-    @PutMapping("/admin/update")
+    @PutMapping("/update")
     public ResponseEntity<Teams> updateTeam(@RequestBody Teams teams) {
         Teams updateTeam = teamsService.updateTeam(teams);
         return new ResponseEntity<>(updateTeam, HttpStatus.OK);
     }
 
-    @DeleteMapping("/admin/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteTeam(@PathVariable("id") Long id) {
         teamsService.deleteTeam(id);
         return new ResponseEntity<>(HttpStatus.OK);

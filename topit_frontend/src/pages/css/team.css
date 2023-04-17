@@ -1,0 +1,9 @@
+.team--table {
+  border: 1px solid black;
+  width: calc(100%-150px);
+  margin-left: 500px;
+}
+.team--header {
+  width: 100%;
+  justify-content: space-between;
+}

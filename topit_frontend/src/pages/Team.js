@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import Teams  from "../components/Teams";
+import Teams from "../components/Teams";
 import "./css/tasks.css";
 
 const Team = () => {
@@ -9,7 +8,7 @@ const Team = () => {
       <div className="tasks--container">
         <Teams />
 
-        <Link to="/addTask">
+        <Link to="/addTeam">
           <button className="tasks--button">+ Add Team</button>
         </Link>
       </div>

@@ -11,7 +11,7 @@ const AddTask = () => {
       description: "",
       endDate: "",
       link: "",
-      descriptionAnswer: "",
+      team_number: "",
     },
   ]);
   console.log(data);
@@ -30,7 +30,8 @@ const AddTask = () => {
       data.nameTask == null ||
       data.description == null ||
       data.endDate == null ||
-      data.link == null
+      data.link == null ||
+      data.team_number == null
     ) {
       alert("Не валидни данни");
     } else {
@@ -42,7 +43,7 @@ const AddTask = () => {
             description: data.description,
             endDate: data.endDate,
             link: data.link,
-            descriptionAnswer: null,
+            team_number: data.team_number,
           },
           {
             headers: {
@@ -87,6 +88,13 @@ const AddTask = () => {
           type="text"
           id="link"
           placeholder="link"
+          onChange={handleChange}
+        />
+        <input
+          className="form-input"
+          type="text"
+          id="team_number"
+          placeholder="team_number"
           onChange={handleChange}
         />
         <button className="form-button">

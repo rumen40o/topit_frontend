@@ -1,14 +1,11 @@
 package com.example.TopIt.services;
 
-import com.example.TopIt.exception.UserNotFoundExeption;
 import com.example.TopIt.models.TaskFeedback;
-import com.example.TopIt.models.Tasks;
+import com.example.TopIt.models.User;
 import com.example.TopIt.repository.FeedBackRepository;
-import com.example.TopIt.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class FeedBackService {
@@ -23,4 +20,8 @@ public class FeedBackService {
     public List<TaskFeedback> findAllFeedbacks(){
         return repository.findAll();
     }
+    public List<String> showTaskFeedback(){
+        return repository.showTaskFeedback();
+    }
+
 }

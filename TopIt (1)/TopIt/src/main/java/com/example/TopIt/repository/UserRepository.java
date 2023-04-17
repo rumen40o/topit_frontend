@@ -15,7 +15,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
     Optional<User> findUserById(Long id);
-    @Query(value = "SELECT * FROM user_model WHERE user_model.email NOT IN (SELECT employees.email FROM employees) AND user_model.id <> :id", nativeQuery = true)
-    List<User> findEmployeeSuggestionsExcept(@Param("id") Long id);
 
 }

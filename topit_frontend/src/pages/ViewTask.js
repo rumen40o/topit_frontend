@@ -19,6 +19,7 @@ const ViewTask = () => {
     description: "",
     endDate: "",
     link: "",
+    team_number: "",
   });
 
   console.log(localStorage.token);
@@ -68,6 +69,9 @@ const ViewTask = () => {
   return (
     <div className="view-task">
       <h1 className="view-task--title">{taskData.nameTask}</h1>
+      <label>Отбор:</label>
+      <h2 className="view-task--title">{taskData.team_number}</h2>
+      <label>Трябва да направи тази задача</label>
       <h3 className="view-task--date">{taskData.endDate}</h3>
       <p className="view-task--description">{taskData.description}</p>
       <a href={taskData.link} className="view-task--link">
