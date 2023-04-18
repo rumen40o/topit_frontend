@@ -28,5 +28,5 @@ public class Tasks {
 
     private String link;
 
-    private String team_number;
+    private String team_name;
 }

@@ -12,5 +12,7 @@ public interface TaskRepository extends JpaRepository<Tasks,Long> {
 
     Optional<Tasks> findTaskById(Long id);
 
+    @Query(value = "select name from teams",nativeQuery = true)
+    List<String> findNameTeam();
 
 }

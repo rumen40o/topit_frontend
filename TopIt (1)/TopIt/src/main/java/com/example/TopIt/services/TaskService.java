@@ -50,4 +50,7 @@ public class TaskService {
     }
 
 
+    public List<String> findAllNames(){
+        return repository.findNameTeam();
+    }
 }

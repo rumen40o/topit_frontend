@@ -5,23 +5,22 @@ import "./css/login.css";
 import { Link } from "react-router-dom";
 
 const AddTask = () => {
-  const [data, setData] = useState([
+  const [data, setData] = useState(
     {
       nameTask: "",
       description: "",
       endDate: "",
       link: "",
-      team_number: "",
+      team_name: "",
     },
-  ]);
+  );
   console.log(data);
 
   const handleChange = (event) => {
-    console.log("works");
-    const { id, value } = event.target;
+    const { name, value } = event.target;
     setData((prevLoginInfo) => ({
       ...prevLoginInfo,
-      [id]: value,
+      [name]: value,
     }));
   };
 
@@ -31,7 +30,7 @@ const AddTask = () => {
       data.description == null ||
       data.endDate == null ||
       data.link == null ||
-      data.team_number == null
+      data.team_name == null
     ) {
       alert("Не валидни данни");
     } else {
@@ -43,7 +42,7 @@ const AddTask = () => {
             description: data.description,
             endDate: data.endDate,
             link: data.link,
-            team_number: data.team_number,
+            team_name: data.team_name,
           },
           {
             headers: {
@@ -53,9 +52,29 @@ const AddTask = () => {
         )
         .then(() => {
           console.log("function successfull");
+          console.log("------------------------")
+          console.log(data)
+          console.log("------------------------")
         });
     }
   };
+
+  const [names, setNames] = useState([]);
+  const findNames = (emp) => {
+    axios
+      .get("http://localhost:8081/task/allNames", {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      })
+      .then((res) => {
+        setNames(res.data);
+        console.log(names)
+        console.log("Getting from ::::::", names);
+      });
+  };
+
+  console.log("one more test: " + names);
 
   return (
     <div className="login">
@@ -63,7 +82,7 @@ const AddTask = () => {
         <input
           className="form-input"
           type="text"
-          id="nameTask"
+          name="nameTask"
           placeholder="Task name"
           onChange={handleChange}
           autofocus
@@ -71,14 +90,14 @@ const AddTask = () => {
         <input
           className="form-input"
           type="text"
-          id="description"
+          name="description"
           placeholder="description"
           onChange={handleChange}
         />
         <input
           className="form-input"
           type="date"
-          id="endDate"
+          name="endDate"
           placeholder="endDate"
           onChange={handleChange}
         />
@@ -86,17 +105,22 @@ const AddTask = () => {
         <input
           className="form-input"
           type="text"
-          id="link"
+          name="link"
           placeholder="link"
           onChange={handleChange}
         />
-        <input
+        <select
           className="form-input"
           type="text"
-          id="team_number"
-          placeholder="team_number"
+          name="team_name"
+          placeholder="team_name"
+          onClick={findNames}
           onChange={handleChange}
-        />
+        >
+          {names?.map((names) => (
+              <option value={names}>{names}</option>
+            ))}
+        </select>
         <button className="form-button">
           <Link to="/task">
             <button className="form-button" tabindex="-1" onClick={addTask}>

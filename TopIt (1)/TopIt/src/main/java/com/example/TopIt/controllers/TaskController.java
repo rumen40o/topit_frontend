@@ -35,6 +35,12 @@ public class TaskController {
         System.out.println(tasks.getEndDate());
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
+    
+    @GetMapping("/allNames")
+    public ResponseEntity<List<String>> getAllNamesTask(){
+        List<String> team_names = taskService.findAllNames();
+        return new ResponseEntity<>(team_names, HttpStatus.OK);
+    }
 
     @PostMapping("/add")
     public ResponseEntity<Tasks> addTask(@RequestBody Tasks tasks, @AuthenticationPrincipal User u) {

@@ -15,14 +15,6 @@ const UpdateTask = () => {
   console.log(data);
   const { id } = useParams();
 
-  const handleChange = (event) => {
-    console.log("works");
-    const { id, value } = event.target;
-    setData((prevLoginInfo) => ({
-      ...prevLoginInfo,
-      [id]: value,
-    }));
-  };
   const updateTask = () => {
     axios
       .put(
@@ -52,39 +44,71 @@ const UpdateTask = () => {
     );
     console.log(result);
     setData(result.data);
-  };
-
-  useEffect(() => {
+  };useEffect(() => {
     loadTask();
   }, []);
+
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setData((prevLoginInfo) => ({
+      ...prevLoginInfo,
+      [name]: value,
+    }));
+  };
+  
+  const [emps, setEmp] = useState([]);
+  const findEmployees = (emp) => {
+    axios
+      .get("http://localhost:8081/team/allEmployees", {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      })
+      .then((res) => {
+        setEmp(res.data);
+        console.log(emps)
+        console.log("Getting from ::::::", emps);
+      });
+  };
   return (
     <div className="login">
     <form className="form">
         <input
           type="text"
           className="form-input"
-          id="name"
+          name="name"
           placeholder="nameTask"
           value={data.name}
           onChange={handleChange}
           autofocus
         />
-        <input
+        <select
         className="form-input"
           type="text"
-          id="leader"
+          name="leader"
           placeholder="leader"
           value={data.leader}
           onChange={handleChange}
-        />
-        <input
+          onClick={findEmployees}
+        >
+          {emps?.map((emps) => (
+              <option value={emps}>{emps}</option>
+            ))}
+        </select>
+        <select
         className="form-input"
           type="text"
-          id="members"
+          name="members"
           placeholder="members"
           value={data.members}
           onChange={handleChange}
-        />
+          onClick={findEmployees}
+        >
+          {emps?.map((emps) => (
+              <option value={emps}>{emps}</option>
+            ))}
+        </select>
         <button className="form-button">
         <Link to="/teams">
           <button className="form-button" tabindex="-1" onClick={updateTask}>

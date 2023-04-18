@@ -69,7 +69,8 @@
 select * from task_feedback;
 select * from tasks;
 select * from employees;
-select * from teams;]]></console>
+select * from teams;
+select name from teams;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
