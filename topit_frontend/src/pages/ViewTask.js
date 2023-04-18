@@ -7,15 +7,6 @@ import TaskFeedback from "../components/TaskFeedback";
 
 const ViewTask = () => {
   const [data, setData] = useState([]);
-
-
-  const [loginInfo, setLoginInfo] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  
-
   const [taskData, setTaskData] = useState({
 
     nameTask: "",
@@ -38,20 +29,6 @@ const ViewTask = () => {
   useEffect(() => {
     loadTask().then(console.log(taskData.endDate));
   }, []);
-
-  const loadEmail = async () => {
-    const result = await axios.get(`http://localhost:8081/auth/find/${id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.token,
-      },
-    });
-    setLoginInfo(result.loginInfo);
-    console.log(result.loginInfo)
-  };
-  useEffect(() => {
-    loadEmail();
-  }, []);
-
 
   useEffect(() => {
     axios
@@ -91,7 +68,7 @@ const ViewTask = () => {
           {data.map((data)=>(
           <tr>
             <td>{data.content}</td>
-            <td><td>{loginInfo.email}</td></td>
+            
           </tr>
             ))}
 

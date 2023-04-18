@@ -17,6 +17,8 @@ import ViewTask from "./pages/ViewTask";
 import UpdateTask from "./pages/UpdateTask";
 import UpdateEvent from "./pages/UpdateEvent";
 import ViewEvent from "./pages/viewEvent";
+import ViewTeam from "./pages/viewTeam";
+import UpdateTeam from "./pages/updateTeam";
 import { useState } from "react";
 import { AuthProvider } from "./Contexts/userContext";
 
@@ -67,6 +69,15 @@ function App() {
               }
             />
             <Route
+              path="/viewTeam/:id"
+              element={
+                <>
+                  <NavBar selectedButtonId={4} />
+                  <ViewTeam/>
+                </>
+              }
+            />
+            <Route
               path="/taskFeedback"
               element={
                 <>
@@ -108,6 +119,15 @@ function App() {
                 <>
                   <NavBar selectedButtonId={2} />
                   <UpdateTask />
+                </>
+              }
+            />
+            <Route
+              path="/updateTeam/:id"
+              element={
+                <>
+                  <NavBar selectedButtonId={4} />
+                  <UpdateTeam />
                 </>
               }
             />

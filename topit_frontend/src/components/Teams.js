@@ -8,7 +8,7 @@ const Teams = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/team/admin/all", {
+      .get("http://localhost:8081/team/all", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -22,7 +22,7 @@ const Teams = () => {
 
   const deleteTask = (id, e) => {
     axios
-      .delete(`http://localhost:8081/team/admin/delete/${id}`, {
+      .delete(`http://localhost:8081/team/delete/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -41,14 +41,15 @@ const Teams = () => {
       </tr>
       {data.map((data, index) => (
         <tr>
-          <td>{data.nameTask}</td>
+          <td>{data.name}</td>
+          <td>{data.leader}</td>
           <td>
-            <Link to={`/viewTask/${data.id}`}>
+            <Link to={`/viewTeam/${data.id}`}>
               <p className="tasks--link">View</p>
             </Link>
           </td>
           <td>
-            <Link to={`/updateTask/${data.id}`}>
+            <Link to={`/updateTeam/${data.id}`}>
               <p className="tasks--link">Edit</p>
             </Link>
           </td>

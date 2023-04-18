@@ -21,11 +21,8 @@ public class Teams {
 
     private String name;
 
-
     private String leader;
 
     private String members;
 
-    @Column(nullable = false,updatable = false)
-    private String TeamCode;
 }

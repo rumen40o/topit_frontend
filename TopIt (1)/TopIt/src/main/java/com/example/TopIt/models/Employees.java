@@ -30,7 +30,4 @@ public class Employees {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Teams team;
-
-    @Column(nullable = false,updatable = false)
-    private String employeeCode;
 }

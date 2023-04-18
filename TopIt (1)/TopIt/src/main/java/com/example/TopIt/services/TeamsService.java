@@ -20,7 +20,6 @@ public class TeamsService {
 
 
     public Teams addTeam(Teams teams){
-        teams.setTeamCode(UUID.randomUUID().toString());
         return repository.save(teams);
     }
 
@@ -28,8 +27,16 @@ public class TeamsService {
         return repository.findAll();
     }
 
-    public Teams updateTeam(Teams teams){
-        return repository.save(teams);
+    public Teams updateTeam(Teams teams,Long id){
+        return repository.findTeamById(id)
+                .map(user -> {
+                    user.setName(teams.getName());
+                    user.setLeader(teams.getLeader());
+                    user.setMembers(teams.getMembers());
+
+                    return repository.save(user);
+                })
+                .orElseThrow(() -> new UserNotFoundExeption("User by id "+ id+" was not found"));
     }
 
     public Teams findTeamsById(Long id){

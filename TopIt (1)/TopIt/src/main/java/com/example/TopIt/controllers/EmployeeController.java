@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -23,7 +23,7 @@ public class EmployeeController {
     
     @GetMapping("/all")
     public ResponseEntity<List<Employees>> getAllEmployeesAdmin(){
-        List<Employees> employees = employeeService.findAllEployees();
+        List<Employees> employees = employeeService.findAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
     @GetMapping("/allEmails")
@@ -42,7 +42,6 @@ public class EmployeeController {
         if (!u.getAdministrator()) {
             return new ResponseEntity<>(null, HttpStatus.valueOf(403));
         }else {
-
             Employees newEmployee = employeeService.addEmployee(employees);
             return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
         }

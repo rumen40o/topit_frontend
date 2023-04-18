@@ -29,10 +29,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="5f99b31a-ecdd-4c11-a117-285fce3902e0">
-      <console name="Connection" type="STANDARD" schema="public" session="Main">select * from teams;</console>
+      <console name="Connection" type="STANDARD" schema="public" session="Main"><![CDATA[select * from teams;]]></console>
     </connection>
     <connection id="b163be01-c47d-49f8-84e5-8eebf4e3c000">
-      <console name="Connection 1" type="STANDARD" schema="public" session="Main">select * from tasks;</console>
+      <console name="Connection 1" type="STANDARD" schema="public" session="Main"><![CDATA[select * from tasks;]]></console>
     </connection>
     <connection id="5be4c16b-d661-4d8e-a2bd-225dbe3de1e9">
       <console name="Connection 2" type="STANDARD" schema="TopIt" session="Main" />
@@ -62,12 +62,14 @@
       <console name="Connection 7" type="STANDARD" schema="postgres" session="Main" />
     </connection>
     <connection id="825931f4-2844-496c-b1b5-7220f2f730e9">
-      <console name="Connection" type="STANDARD" schema="public" session="Main">SELECT employees.id,employees.name,employees.phone,employees.jobTitle, user_model.email from employees inner join employees.id=user_model.id;</console>
+      <console name="Connection" type="STANDARD" schema="public" session="Main"><![CDATA[SELECT employees.id,employees.name,employees.phone,employees.jobTitle, user_model.email from employees inner join employees.id=user_model.id;]]></console>
     </connection>
     <connection id="a35fab1f-1cac-4b08-b189-97abefdaaf88">
-      <console name="Connection 8" type="STANDARD" schema="public" session="Main">select email ,content from user_model join task_feedback tf on tf.id = user_model.id
+      <console name="Connection 8" type="STANDARD" schema="public" session="Main"><![CDATA[select email ,content from user_model join task_feedback tf on tf.id = user_model.id
 select * from task_feedback;
-select * from tasks;</console>
+select * from tasks;
+select * from employees;
+select * from teams;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -1128,7 +1130,7 @@ select * from tasks;</console>
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="14.6" />
+          <database-version value="14.4" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />

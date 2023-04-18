@@ -21,7 +21,7 @@ public class EventService {
 
 
     public Events addEvent(Events events){
-        events.setEventCode(UUID.randomUUID().toString());
+
         return repository.save(events);
     }
 

@@ -19,13 +19,10 @@ public class EmployeeService {
     private final EmployeeRepository repository;
 
     public Employees addEmployee(Employees employees){
-        System.out.println("First name: " + employees);
-
-       employees.setEmployeeCode(UUID.randomUUID().toString());
        return repository.save(employees);
     }
 
-    public List<Employees> findAllEployees(){
+    public List<Employees> findAllEmployees(){
         return repository.findAll();
     }
 

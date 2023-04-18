@@ -29,7 +29,4 @@ public class Tasks {
     private String link;
 
     private String team_number;
-
-    @Column(nullable = false,updatable = false)
-    private String TaskCode;
 }

@@ -28,7 +28,4 @@ public class Events {
     private LocalDate startDateEvent;
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate endDateEvent;
-
-    @Column(nullable = false,updatable = false)
-    private String EventCode;
 }

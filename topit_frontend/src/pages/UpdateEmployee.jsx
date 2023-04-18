@@ -84,18 +84,15 @@ const UpdateEmployees = () => {
           onChange={handleChange}
           autofocus
         />
-        <select
-          type="email"
+        <input
+          type="text"
+          className="login-input"
           name="email"
-          onChange={handleChange}
+          placeholder="eamil"
           value={data.email}
-          placeholder="E-mail"
-          onClick={findEmails}
-        >
-          {emails?.map((email) => (
-            <option value={email}>{email}</option>
-          ))}
-        </select>
+          onChange={handleChange}
+          disabled
+        />
         <input
           type="text"
           className="login-input"
