@@ -2,20 +2,19 @@ import axios from "axios";
 import { useState } from "react";
 import "../pages/css/addEmployee.css";
 
-function AddEmpTest() {
-  const [data, setData] = useState([
-    {
-      name: "",
-      email: "",
-      phone: "",
-      jobTitle: "",
-      imageURL: "",
-    },
-  ]);
+function AddEmployee() {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    jobTitle: "",
+    imageURL: "",
+  });
+  console.log("------data");
   console.log(data);
+  console.log("----------");
 
   const handleChange = (event) => {
-    console.log("works");
     const { name, value } = event.target;
     setData((prevLoginInfo) => ({
       ...prevLoginInfo,
@@ -25,13 +24,14 @@ function AddEmpTest() {
 
   const token = localStorage.getItem("token");
   const addEmployee = () => {
+    console.log(data);
     if (
       data.name == null ||
       data.email == null ||
       data.jobTitle == null ||
       data.phone == null
     ) {
-      alert("Не валидни данни");
+      alert("Невалидни данни");
     } else {
       axios
         .post(
@@ -57,19 +57,23 @@ function AddEmpTest() {
     }
   };
 
-  const findEmails = () => {
-    axios.get(
-      "http://localhost:8081/employee/allEmails",
-      {
+  // let emails;
+  const [emails, setEmails] = useState([]);
+  const findEmails = (email) => {
+    axios
+      .get("http://localhost:8081/employee/allEmails", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
-      }.then((res) => {
-        console.log("Getting from ::::::", res.data);
-        setData(res.data);
       })
-    );
+      .then((res) => {
+        setEmails(res.data);
+        console.log("Getting from ::::::", emails);
+      });
   };
+
+  console.log("one more test: " + emails);
+
   return (
     <div id="add-emp">
       <button id="add-emp-button">
@@ -90,7 +94,9 @@ function AddEmpTest() {
             placeholder="E-mail"
             onClick={findEmails}
           >
-            <option>{data.email}</option>;
+            {emails?.map((email) => (
+              <option value={email}>{email}</option>
+            ))}
           </select>
 
           <input
@@ -121,4 +127,4 @@ function AddEmpTest() {
   );
 }
 
-export default AddEmpTest;
+export default AddEmployee;

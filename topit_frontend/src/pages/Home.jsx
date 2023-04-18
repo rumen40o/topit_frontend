@@ -7,25 +7,25 @@ import account_icon from "../assets/icons8-male-user-64.png";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <img className="logo" src={topit_logo} alt="logo"></img>
       <Link to="/login">
-        <button className="account--logo">
+        <p className="account--logo">
           <img src={account_icon} />
-        </button>
+        </p>
       </Link>
       <div className="calendar">
         <HomeCalendar />
       </div>
-      <div className="buttons">
+      <div className="home--buttons-container">
         <Link to="/task">
-          <button className="Task--button">Tasks</button>
+          <p className="home--button">Tasks</p>
         </Link>
         <Link to="/employee">
-          <button className="Task--button">Employees</button>
+          <p className="home--button">Employees</p>
         </Link>
         <Link to="/teams">
-          <button className="Task--button">Teams</button>
+          <p className="home--button">Teams</p>
         </Link>
       </div>
     </div>

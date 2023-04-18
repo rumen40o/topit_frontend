@@ -5,24 +5,21 @@ import { Link } from "react-router-dom";
 import "./css/updateEmployee.css";
 
 const UpdateEmployees = () => {
-  const [data, setData] = useState([
-    {
-      name: "",
-      email: "",
-      jobTitle: "",
-      phone: "",
-      imageURL: "",
-    },
-  ]);
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    jobTitle: "",
+    phone: "",
+    imageURL: "",
+  });
   console.log(data);
   const { id } = useParams();
 
   const handleChange = (event) => {
-    console.log("works");
-    const { id, value } = event.target;
+    const { name, value } = event.target;
     setData((prevLoginInfo) => ({
       ...prevLoginInfo,
-      [id]: value,
+      [name]: value,
     }));
   };
 
@@ -61,30 +58,48 @@ const UpdateEmployees = () => {
     );
     setData(result.data);
   };
+
+  const [emails, setEmails] = useState([]);
+  const findEmails = (email) => {
+    axios
+      .get("http://localhost:8081/employee/allEmails", {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      })
+      .then((res) => {
+        setEmails(res.data);
+        console.log("Getting from ::::::", emails);
+      });
+  };
   return (
     <div className="update-employee">
       <div id="signup-div" className="update-employee">
         <input
           type="text"
           className="login-input"
-          id="name"
+          name="name"
           placeholder="name"
           value={data.name}
           onChange={handleChange}
           autofocus
         />
-        <input
+        <select
           type="email"
-          className="login-input"
-          id="email"
-          placeholder="email"
-          value={data.email}
+          name="email"
           onChange={handleChange}
-        />
+          value={data.email}
+          placeholder="E-mail"
+          onClick={findEmails}
+        >
+          {emails?.map((email) => (
+            <option value={email}>{email}</option>
+          ))}
+        </select>
         <input
           type="text"
           className="login-input"
-          id="jobTitle"
+          name="jobTitle"
           placeholder="jobTitle"
           value={data.jobTitle}
           onChange={handleChange}
@@ -92,7 +107,7 @@ const UpdateEmployees = () => {
         <input
           type="number"
           className="login-input"
-          id="phone"
+          name="phone"
           placeholder="phone"
           value={data.phone}
           onChange={handleChange}
@@ -100,7 +115,7 @@ const UpdateEmployees = () => {
         <input
           type="text"
           className="login-input"
-          id="imageURL"
+          name="imageURL"
           placeholder="imageURL"
           value={data.imageURL}
           onChange={handleChange}

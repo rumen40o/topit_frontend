@@ -25,7 +25,9 @@ const Employees = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  console.log("----employees data");
   console.log(data);
+  console.log("----------");
 
   let allEmployees = data
     .filter((employee) => {
@@ -43,6 +45,7 @@ const Employees = () => {
     .map((employee) => (
       <Employee
         id={employee.id}
+        key={employee.id}
         name={employee.name}
         email={employee.email}
         jobTitle={employee.jobTitle}

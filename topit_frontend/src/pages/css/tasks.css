@@ -33,11 +33,15 @@
   /* border: 1px solid black; */
   width: 10%;
 }
+
 .tasks td {
-  /* background-color: purple; */
+  width: 20%;
 }
 .tasks .task--name {
-  width: 70%;
+  width: 50%;
+}
+.tasks .task--leader {
+  width: 50%;
 }
 .tasks--headers {
   /* border-radius: 10% 10% 0 0; */

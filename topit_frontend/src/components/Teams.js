@@ -31,10 +31,10 @@ const Teams = () => {
       .then(window.location.reload());
   };
   return (
-    <table className="team--table">
-      <tr>
-        <th>Name</th>
-        <th>Leader</th>
+    <table className="tasks--table">
+      <tr className="tasks--headers">
+        <th className="task--name">Name</th>
+        <th className="task--leader">Leader</th>
         <th>View</th>
         <th>Edit</th>
         <th>Delete</th>

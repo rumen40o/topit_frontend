@@ -20,4 +20,9 @@ public class TaskFeedback {
 
     private String content;
 
+
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Tasks task;
+
 }

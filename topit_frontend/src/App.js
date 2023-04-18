@@ -4,6 +4,8 @@ import Events from "./pages/Events";
 import Employees from "./pages/Employees";
 import Tasks from "./pages/Tasks";
 import Account from "./pages/Account";
+import Team from "./pages/Team";
+import AddTeam from "./pages/AddTeam";
 import "./App.css";
 import NavBar from "./navbar/NavBar";
 import Login from "./pages/Login";
@@ -168,7 +170,16 @@ function App() {
               element={
                 <>
                   <NavBar selectedButtonId={4} />
-                  <Teams />
+                  <Team />
+                </>
+              }
+            />
+            <Route
+              path="/addTeam"
+              element={
+                <>
+                  <NavBar selectedButtonId={4} />
+                  <AddTeam />
                 </>
               }
             />
