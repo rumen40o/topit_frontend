@@ -1,21 +1,21 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import axios from "axios";
 import "../pages/css/feedback.css";
 
 const TaskFeedback = () => {
-  const [data, setData] = useState([
+  const [feedback, setFeetback] = useState([
     {
       content: "",
     },
   ]);
-
+ 
   const handleChange = (event) => {
     console.log("works");
-    const { id, value } = event.target;
-    setData((prevLoginInfo) => ({
+    const { name, value } = event.target;
+    setFeetback((prevLoginInfo) => ({
       ...prevLoginInfo,
-      [id]: value,
+      [name]: value,
     }));
   };
 
@@ -24,8 +24,11 @@ const TaskFeedback = () => {
       .post(
         "http://localhost:8081/feedback/add",
         {
-          content: data.content,
+          content: feedback.content,
+          
         },
+         
+
         {
           headers: {
             Authorization: "Bearer " + localStorage.token,
@@ -37,18 +40,22 @@ const TaskFeedback = () => {
       });
   };
   return (
-    <div>
+    <div className="login">
+    <form className="form">
       <textarea
         className="view-task--description"
         type="text"
-        id="content"
+        name="content"
         placeholder="content"
         onChange={handleChange}
       />
-
+     
+      <Link to={"/task"}>
       <button className="feedback--button" onClick={AddAnswer}>
         Add Answer
       </button>
+      </Link>
+      </form>
     </div>
   );
 };

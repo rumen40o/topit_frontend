@@ -58,10 +58,10 @@ const ViewEvent = () => {
           <div>
             
             <Link to={`/updateEvent/${data.id}`}>
-            <button >Edit</button>
+            <button className="edit--button">Edit</button>
             </Link>
             
-            <button  onClick={(e) => deleteEvent(data.id, e)}><Link to="/event">Delete</Link></button>
+            <button className="delete--button" onClick={(e) => deleteEvent(data.id, e)}><Link to="/event">Delete</Link></button>
     </div>
     </div>
   );

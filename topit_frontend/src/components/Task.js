@@ -20,7 +20,9 @@ const Tasks = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  
   const deleteTask = (id, e) => {
+    
     axios
       .delete(`http://localhost:8081/task/delete/${id}`, {
         headers: {
@@ -28,7 +30,8 @@ const Tasks = () => {
         },
       })
       .then(() => console.log("function successfull"))
-      .then(window.location.reload());
+      .then(window.location.reload())
+      .catch((err) => alert("Тябва да премахнеш коментарите"));
   };
   return (
     <table className="tasks--table">

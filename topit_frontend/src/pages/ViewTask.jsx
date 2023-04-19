@@ -9,11 +9,11 @@ const ViewTask = () => {
   const [data, setData] = useState([]);
   const [taskData, setTaskData] = useState({
 
-    nameTask: "",
+    name_ask: "",
     description: "",
     endDate: "",
     link: "",
-    team_number: "",
+    team_name: "",
   });
 
   const { id } = useParams();
@@ -31,21 +31,32 @@ const ViewTask = () => {
   }, []);
 
   useEffect(() => {
+    
     axios
-      .get("http://localhost:8081/feedback/all", {
+      .get(`http://localhost:8081/feedback/find/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
       })
       .then((res) => {
         console.log("Getting from ::::::", res.data);
-        setData(res.data);
+        setData(res.data)
       })
       .catch((err) => console.log(err));
+      
   }, []);
+console.log(id)
 
-
-
+const deleteFeedBack = (id, e) => {
+  axios
+    .delete(`http://localhost:8081/feedback/delete/${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.token,
+      },
+    })
+    .then(() => console.log("function successfull"))
+    .then(window.location.reload());
+};
   return (
     <div className="view-task">
       <h1 className="view-task--title">{taskData.nameTask}</h1>
@@ -57,18 +68,25 @@ const ViewTask = () => {
       <a href={taskData.link} className="view-task--link">
         {taskData.link}
       </a>
-      
+
      <div className="tasks">
 <div className="tasks--container">
         <table className="tasks--table">
           <tr className="tasks--headers">
             <th>Answers</th>
-            <th>user</th>
+            <th>Delete</th>
           </tr> 
           {data.map((data)=>(
           <tr>
-            <td>{data.content}</td>
-            
+            <td>{data.content}</td> 
+            <td>
+            <button
+              className="tasks--link"
+              onClick={(e) => deleteFeedBack(data.id, e)}
+            >
+              Delete
+            </button>
+          </td>
           </tr>
             ))}
 

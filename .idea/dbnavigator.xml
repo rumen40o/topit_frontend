@@ -70,7 +70,10 @@ select * from task_feedback;
 select * from tasks;
 select * from employees;
 select * from teams;
-select name from teams;]]></console>
+select name from teams;
+
+select * from task_feedback where task_id=1;
+select * from task_feedback;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

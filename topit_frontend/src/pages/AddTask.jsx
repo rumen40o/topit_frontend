@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const AddTask = () => {
   const [data, setData] = useState(
     {
-      nameTask: "",
+      name_Task: "",
       description: "",
       endDate: "",
       link: "",
@@ -26,7 +26,7 @@ const AddTask = () => {
 
   const addTask = () => {
     if (
-      data.nameTask == null ||
+      data.name_Task == null ||
       data.description == null ||
       data.endDate == null ||
       data.link == null ||
@@ -38,7 +38,7 @@ const AddTask = () => {
         .post(
           "http://localhost:8081/task/add",
           {
-            nameTask: data.nameTask,
+            nameTask: data.name_Task,
             description: data.description,
             endDate: data.endDate,
             link: data.link,
@@ -82,8 +82,8 @@ const AddTask = () => {
         <input
           className="form-input"
           type="text"
-          name="nameTask"
-          placeholder="Task name"
+          name="name_Task"
+          placeholder="name_Task"
           onChange={handleChange}
           autofocus
         />

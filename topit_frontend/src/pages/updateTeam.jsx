@@ -96,19 +96,14 @@ const UpdateTask = () => {
               <option value={emps}>{emps}</option>
             ))}
         </select>
-        <select
+        <input
         className="form-input"
           type="text"
           name="members"
           placeholder="members"
           value={data.members}
           onChange={handleChange}
-          onClick={findEmployees}
-        >
-          {emps?.map((emps) => (
-              <option value={emps}>{emps}</option>
-            ))}
-        </select>
+        />
         <button className="form-button">
         <Link to="/teams">
           <button className="form-button" tabindex="-1" onClick={updateTask}>

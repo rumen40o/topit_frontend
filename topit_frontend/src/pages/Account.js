@@ -46,7 +46,7 @@ const Account = (props) => {
       <h1 className="account--welcome">WELCOME,</h1>
 
       <h2 className="account--name">
-        {loginInfo.email}
+        {localStorage.email}
       </h2>
 
       <Link to="/login">

@@ -18,4 +18,16 @@
   color: #2d314299;
   font-weight: 500;
 }
+.edit--button{
+  width: 100px;
+  height: 30px;
+  background-color: #119da4;
+  border-radius: 30%;
+}
+.delete--button{
+  width: 100px;
+  height: 30px;
+  background-color: #119da4;
+  border-radius: 30%;
+}
 

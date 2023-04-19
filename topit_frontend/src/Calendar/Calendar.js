@@ -5,7 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../Calendar/calendar.css";
+import "./calendar.css";
 import axios from "axios";
 
 
@@ -59,7 +59,7 @@ const Calendar = () => {
           data.map((data, index) => (
           <div>
             <Link to={`/viewEvent/${data.id}`}>
-            <button>View</button>
+            <button className="Calendar--button">View</button>
             </Link>
           </div>
           ))
@@ -81,8 +81,7 @@ const Calendar = () => {
             end: "dayGridMonth, timeGridWeek, timeGridDay",
           }}
           eventClick={handleEventClick}
-          height={"80vh"}
-          dayMinWidth={"100vh"}
+
           
         />
         

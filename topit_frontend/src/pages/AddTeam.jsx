@@ -54,9 +54,6 @@ const AddTeam = () => {
     }));
   };
 
-
-
-
   const [emps, setEmp] = useState([]);
   const findEmployees = (emp) => {
     axios
@@ -97,18 +94,14 @@ const AddTeam = () => {
               <option value={emps}>{emps}</option>
             ))}
       </select>
-      <select
+      <input
         className="form-input"
         type="text"
         name="members"
         placeholder="members"
         onChange={handleChange}
         onClick={findEmployees}
-      >
-        {emps?.map((emps) => (
-              <option value={emps}>{emps}</option>
-            ))}
-      </select>
+      />
       <button className="form-button">
         <Link to={"/teams"}>
           <button className="form-button" tabindex="-1" onClick={addTeam}>
