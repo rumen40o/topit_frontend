@@ -23,4 +23,10 @@ public class FeedBackService {
         return repository.findAll();
     }
 
+    public List<TaskFeedback> findTask(Long taskId){
+        return repository.findTaskFeedbacksById(taskId);
+    }
+    public void deleteFeedback(Long id){
+        repository.deleteById(id);
+    }
 }

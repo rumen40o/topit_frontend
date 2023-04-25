@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Event = () => {
   return (
-    <div>
+    <div  className="event--calendar">
       <Calendar />
     </div>
   );

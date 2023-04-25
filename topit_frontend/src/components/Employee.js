@@ -2,6 +2,7 @@ import "../pages/css/employee.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import picture from "../assets/666201.png";
 
 export default function Employee(props) {
   const toggleOptions = () => {
@@ -23,7 +24,7 @@ export default function Employee(props) {
   };
   return (
     <div className="employee">
-      <img className="employee--image" src={props.imageURL}></img>
+      <img className="employee--image" src={props.imageURL || picture}></img>
       <div className="employee--fl-div">
         <h3 className="employee--name">
           {nameArray.length > 1

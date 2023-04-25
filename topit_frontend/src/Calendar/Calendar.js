@@ -59,7 +59,7 @@ const Calendar = () => {
           data.map((data, index) => (
           <div>
             <Link to={`/viewEvent/${data.id}`}>
-            <button className="Calendar--button">View</button>
+            <button>View</button>
             </Link>
           </div>
           ))
@@ -81,7 +81,8 @@ const Calendar = () => {
             end: "dayGridMonth, timeGridWeek, timeGridDay",
           }}
           eventClick={handleEventClick}
-
+          height={"80vh"}
+          dayMinWidth={"100vh"}
           
         />
         

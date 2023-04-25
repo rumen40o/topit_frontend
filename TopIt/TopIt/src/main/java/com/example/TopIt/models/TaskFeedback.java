@@ -25,7 +25,7 @@ public class TaskFeedback {
             fetch = FetchType.EAGER
         )
     @JoinColumn(
-            name = "task",
+            name = "task_id",
             referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "task_id")
     )

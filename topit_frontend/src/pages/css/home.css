@@ -1,3 +1,10 @@
+.home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 .Task--button {
   background-color: #119da4;
   height: 150px;
@@ -12,22 +19,35 @@
   outline: none;
   font-weight: 400;
 }
-.fc {
-  height: 50vh;
-  margin-left: 120px;
-  margin-top: 20px;
-  width: 100%;
+
+.calendar { 
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 80%;
 }
-.buttons {
-  width: calc(100%-150px);
-  margin-left: 150px;
+.home--buttons-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10rem;
+  width: 80%;
+
 }
+.home--buttons-container p{
+   background-color: #119da4;
+   padding: 2rem 5rem;
+   font-size: 2rem;
+   color: #eff1f3;
+   border-radius: 1rem;
+   font-weight: 600;
+   letter-spacing: 0.2ch;
+}
+
 .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 200px;
   height: 80px;
-  margin-left: 200px;
-}
-.account--logo {
-  border: none;
-  margin-left: 50%;
 }

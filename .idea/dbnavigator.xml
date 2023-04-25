@@ -73,7 +73,8 @@ select * from teams;
 select name from teams;
 
 select * from task_feedback where task_id=1;
-select * from task_feedback;]]></console>
+select * from task_feedback;
+update task_feedback set task_id=1 where content='nz']]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

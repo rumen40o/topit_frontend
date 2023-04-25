@@ -6,7 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./calendar.css";
+import "./Homecalendar.css";
 
 const HomeCalendar = () => {
   const [data, setData] = useState([]);
@@ -56,7 +56,7 @@ const HomeCalendar = () => {
 
   return (
     <div>
-      <div id="calendar">
+      <div id="home--calendar">
         <Fullcalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView={"dayGridMonth"}
@@ -69,7 +69,7 @@ const HomeCalendar = () => {
             end: "dayGridMonth, timeGridWeek, timeGridDay",
         }}
           eventClick={handleEventClick}
-          
+          height={"50vh"}
           
           
         />
