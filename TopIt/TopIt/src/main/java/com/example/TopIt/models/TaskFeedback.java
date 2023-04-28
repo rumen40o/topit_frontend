@@ -1,13 +1,13 @@
 package com.example.TopIt.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Data
+@AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./css/viewTask.css";
 import { useAuth } from "../Contexts/userContext";
@@ -8,8 +8,7 @@ import TaskFeedback from "../components/TaskFeedback";
 const ViewTask = () => {
   const [data, setData] = useState([]);
   const [taskData, setTaskData] = useState({
-
-    name_ask: "",
+    name_task: "",
     description: "",
     endDate: "",
     link: "",
@@ -31,7 +30,6 @@ const ViewTask = () => {
   }, []);
 
   useEffect(() => {
-    
     axios
       .get(`http://localhost:8081/feedback/find/${id}`, {
         headers: {
@@ -40,26 +38,37 @@ const ViewTask = () => {
       })
       .then((res) => {
         console.log("Getting from ::::::", res.data);
-        setData(res.data)
+        setData(res.data);
       })
       .catch((err) => console.log(err));
-      
   }, []);
-console.log(id)
+  console.log(id);
 
-const deleteFeedBack = (id, e) => {
-  axios
-    .delete(`http://localhost:8081/feedback/delete/${id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.token,
-      },
-    })
-    .then(() => console.log("function successfull"))
-    .then(window.location.reload());
-};
+  const fetchFeedback = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8081/feedback/find/${id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      });
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteFeedBack = (id) => {
+    axios
+      .delete(`http://localhost:8081/feedback/delete/${id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      })
+      .then(() => fetchFeedback());
+  };
   return (
     <div className="view-task">
-      <h1 className="view-task--title">{taskData.nameTask}</h1>
+      <h1 className="view-task--title">{taskData.name_task}</h1>
       <label>Отбор:</label>
       <h2 className="view-task--title">{taskData.team_name}</h2>
       <label>Трябва да направи тази задача</label>
@@ -69,32 +78,29 @@ const deleteFeedBack = (id, e) => {
         {taskData.link}
       </a>
 
-     <div className="tasks">
-<div className="tasks--container">
-        <table className="tasks--table">
-          <tr className="tasks--headers">
-            <th>Answers</th>
-            <th>Delete</th>
-          </tr> 
-          {data.map((data)=>(
-          <tr>
-            <td>{data.content}</td> 
-            <td>
-            <button
-              className="tasks--link"
-              onClick={(e) => deleteFeedBack(data.id, e)}
-            >
-              Delete
-            </button>
-          </td>
-          </tr>
+      <div className="tasks">
+        <div className="tasks--container">
+          <table className="tasks--table">
+            <tr className="tasks--headers">
+              <th>Answers</th>
+              <th>Delete</th>
+            </tr>
+            {data.map((data) => (
+              <tr>
+                <td>{data.content}</td>
+                <td>
+                  <button
+                    className="tasks--link"
+                    onClick={(e) => deleteFeedBack(data.id, e)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
             ))}
-
-        </table>
-        <Link to={"/taskFeedback"}>
-      <button className="tasks--button">Add Answer</button>
-      </Link>
-      </div>
+          </table>
+          <TaskFeedback taskId={id} fetchFeedback={fetchFeedback} />
+        </div>
       </div>
     </div>
   );

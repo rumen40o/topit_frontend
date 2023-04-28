@@ -1,13 +1,24 @@
-.view-task--description{
-    width: calc(100%-150px);
-    margin-left: 150px;
-    align-items: center;
-    justify-items: center;
+.feedback-form {
+  width: 100%;
+  display: flex;
 }
-.feedback--button{
-    width: 150px;
-    height: 30px;
-    background-color: #119da4;
-    border: 2px solid #2d3142;
-    border-radius: 15px;
+.feedback--content {
+  flex-grow: 100;
+}
+.feedback--submit-button {
+  flex-grow: 1;
+}
+
+.view-task--description {
+  width: calc(100%-150px);
+  margin-left: 150px;
+  align-items: center;
+  justify-items: center;
+}
+.feedback--button {
+  width: 150px;
+  height: 30px;
+  background-color: #119da4;
+  border: 2px solid #2d3142;
+  border-radius: 15px;
 }
